@@ -1,0 +1,136 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MVCJOBPORTALModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Applystatu">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="jobseekerid" Type="Int32" Nullable="false" />
+    <Property Name="jobname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Employer">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="jobapplication">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="employerid" Type="Int32" Nullable="false" />
+    <Property Name="jobseekerid" Type="Int32" Nullable="false" />
+    <Property Name="jobname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="resume" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Job">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="qualification" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="experience" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="salary" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="employerid" Type="Int32" Nullable="false" />
+    <Property Name="employername" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="postdate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="validuntil" Type="DateTime" Nullable="false" Precision="0" />
+  </EntityType>
+  <EntityType Name="Jobseeker">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="age" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="qualification" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UserLogin">
+    <Key>
+      <PropertyRef Name="Log_id" />
+    </Key>
+    <Property Name="Log_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Reg_id" Type="Int32" Nullable="false" />
+    <Property Name="type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityContainer Name="MVCJOBPORTALEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Applystatus" EntityType="Self.Applystatu" />
+    <EntitySet Name="Employers" EntityType="Self.Employer" />
+    <EntitySet Name="jobapplications" EntityType="Self.jobapplication" />
+    <EntitySet Name="Jobs" EntityType="Self.Job" />
+    <EntitySet Name="Jobseekers" EntityType="Self.Jobseeker" />
+    <EntitySet Name="UserLogins" EntityType="Self.UserLogin" />
+    <FunctionImport Name="add_job">
+      <Parameter Name="name" Mode="In" Type="String" />
+      <Parameter Name="qual" Mode="In" Type="String" />
+      <Parameter Name="experience" Mode="In" Type="String" />
+      <Parameter Name="salary" Mode="In" Type="String" />
+      <Parameter Name="employerid" Mode="In" Type="Int32" />
+      <Parameter Name="employername" Mode="In" Type="String" />
+      <Parameter Name="postdate" Mode="In" Type="DateTime" />
+      <Parameter Name="validuntil" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="confirm_job">
+      <Parameter Name="jobseekerid" Mode="In" Type="Int32" />
+      <Parameter Name="status" Mode="In" Type="String" />
+      <Parameter Name="jobname" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="get_jobs" ReturnType="Collection(MVCJOBPORTALModel.get_jobs_Result)" />
+    <FunctionImport Name="insert_jobapplication">
+      <Parameter Name="employerid" Mode="In" Type="Int32" />
+      <Parameter Name="jobseekerid" Mode="In" Type="Int32" />
+      <Parameter Name="jobname" Mode="In" Type="String" />
+      <Parameter Name="jobseekername" Mode="In" Type="String" />
+      <Parameter Name="jobseekerphone" Mode="In" Type="String" />
+      <Parameter Name="resume" Mode="In" Type="String" />
+      <Parameter Name="jobseekeremail" Mode="In" Type="String" />
+      <Parameter Name="status" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="insert_login">
+      <Parameter Name="regid" Mode="In" Type="Int32" />
+      <Parameter Name="type" Mode="In" Type="String" />
+      <Parameter Name="username" Mode="In" Type="String" />
+      <Parameter Name="password" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="register_employer">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+      <Parameter Name="name" Mode="In" Type="String" />
+      <Parameter Name="email" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="register_jobseeker">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+      <Parameter Name="name" Mode="In" Type="String" />
+      <Parameter Name="age" Mode="In" Type="Int32" />
+      <Parameter Name="qual" Mode="In" Type="String" />
+      <Parameter Name="phone" Mode="In" Type="String" />
+      <Parameter Name="email" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="get_maxlogin">
+      <Parameter Name="max_id" Mode="InOut" Type="Int32" />
+    </FunctionImport>
+  </EntityContainer>
+  <ComplexType Name="get_jobs_Result">
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="String" Name="name" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="qualification" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="experience" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="salary" Nullable="false" MaxLength="50" />
+    <Property Type="Int32" Name="employerid" Nullable="false" />
+    <Property Type="String" Name="employername" Nullable="false" MaxLength="50" />
+    <Property Type="DateTime" Name="postdate" Nullable="false" />
+    <Property Type="DateTime" Name="validuntil" Nullable="false" />
+  </ComplexType>
+</Schema>

@@ -1,0 +1,2 @@
+C:\Users\shibi\source\repos\JobPortalMVC\JobPortalMVC\obj\Debug\JobPortalMVC.csproj.AssemblyReference.cache
+C:\Users\shibi\source\repos\JobPortalMVC\JobPortalMVC\obj\Debug\JobPortalMVC.csproj.CoreCompileInputs.cache

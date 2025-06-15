@@ -1,0 +1,125 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MVCJOBPORTALModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Applystatus">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="jobseekerid" Type="int" Nullable="false" />
+    <Property Name="jobname" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="status" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Employer">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="email" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="jobapplication">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="employerid" Type="int" Nullable="false" />
+    <Property Name="jobseekerid" Type="int" Nullable="false" />
+    <Property Name="jobname" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="phone" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="email" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="resume" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="status" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Jobs">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="qualification" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="experience" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="salary" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="employerid" Type="int" Nullable="false" />
+    <Property Name="employername" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="postdate" Type="date" Nullable="false" />
+    <Property Name="validuntil" Type="date" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Jobseeker">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="age" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="qualification" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="phone" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="email" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UserLogin">
+    <Key>
+      <PropertyRef Name="Log_id" />
+    </Key>
+    <Property Name="Log_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Reg_id" Type="int" Nullable="false" />
+    <Property Name="type" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="username" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="password" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <Function Name="add_job" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="name" Type="varchar" Mode="In" />
+    <Parameter Name="qual" Type="varchar" Mode="In" />
+    <Parameter Name="experience" Type="varchar" Mode="In" />
+    <Parameter Name="salary" Type="varchar" Mode="In" />
+    <Parameter Name="employerid" Type="int" Mode="In" />
+    <Parameter Name="employername" Type="varchar" Mode="In" />
+    <Parameter Name="postdate" Type="date" Mode="In" />
+    <Parameter Name="validuntil" Type="date" Mode="In" />
+  </Function>
+  <Function Name="confirm_job" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="jobseekerid" Type="int" Mode="In" />
+    <Parameter Name="status" Type="varchar" Mode="In" />
+    <Parameter Name="jobname" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="get_jobs" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="get_maxlogin" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="max_id" Type="int" Mode="InOut" />
+  </Function>
+  <Function Name="insert_jobapplication" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="employerid" Type="int" Mode="In" />
+    <Parameter Name="jobseekerid" Type="int" Mode="In" />
+    <Parameter Name="jobname" Type="varchar" Mode="In" />
+    <Parameter Name="jobseekername" Type="varchar" Mode="In" />
+    <Parameter Name="jobseekerphone" Type="varchar" Mode="In" />
+    <Parameter Name="resume" Type="varchar" Mode="In" />
+    <Parameter Name="jobseekeremail" Type="varchar" Mode="In" />
+    <Parameter Name="status" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="insert_login" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="regid" Type="int" Mode="In" />
+    <Parameter Name="type" Type="varchar" Mode="In" />
+    <Parameter Name="username" Type="varchar" Mode="In" />
+    <Parameter Name="password" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="register_employer" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="int" Mode="In" />
+    <Parameter Name="name" Type="varchar" Mode="In" />
+    <Parameter Name="email" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="register_jobseeker" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="int" Mode="In" />
+    <Parameter Name="name" Type="varchar" Mode="In" />
+    <Parameter Name="age" Type="int" Mode="In" />
+    <Parameter Name="qual" Type="varchar" Mode="In" />
+    <Parameter Name="phone" Type="varchar" Mode="In" />
+    <Parameter Name="email" Type="varchar" Mode="In" />
+  </Function>
+  <EntityContainer Name="MVCJOBPORTALModelStoreContainer">
+    <EntitySet Name="Applystatus" EntityType="Self.Applystatus" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Employer" EntityType="Self.Employer" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="jobapplication" EntityType="Self.jobapplication" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Jobs" EntityType="Self.Jobs" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Jobseeker" EntityType="Self.Jobseeker" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserLogin" EntityType="Self.UserLogin" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>
