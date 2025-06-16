@@ -1,0 +1,71 @@
+﻿@model JobPortalMVC.Models.JobSeekerRegister
+@{
+    ViewBag.Title = "Register_Jobseeker_Load";
+}
+
+<h1 class="text-center text-danger">Register Jobseeker</h1>
+<div class="jumbotron">
+    @using (Html.BeginForm("Register_Click", "Register_JobSeeker", FormMethod.Post))
+    {
+        <div class="form-group">
+            <label>
+                Name :
+            </label><br />
+            @Html.TextBoxFor(m => m.name)
+            @Html.ValidationMessageFor(m => m.name)
+        </div>
+        <div class="form-group">
+            <label>
+                Age :
+            </label><br />
+            @Html.TextBoxFor(m => m.age)
+            @Html.ValidationMessageFor(m => m.age)
+        </div>
+        <div>
+            <label>
+                Qualification :
+            </label><br />
+            @foreach (var i in Model.Chosenquals)
+            {
+                <label>
+                    <input type="checkbox" value="@i.value" checked="@i.Ischecked" name="selectedqual" id="@i.value" />@Html.Raw(i.text)
+                </label>
+
+            }
+        </div>
+        <div class="form-group">
+            <label>
+                Phone :
+            </label><br />
+            @Html.TextBoxFor(m => m.phone)
+            @Html.ValidationMessageFor(m => m.phone)
+        </div>
+        <div class="form-group">
+            <label>
+                Email :
+            </label><br />
+            @Html.TextBoxFor(m => m.email)
+            @Html.ValidationMessageFor(m => m.email)
+        </div>
+        <div class="form-group">
+            <label>
+                Username :
+            </label><br />
+            @Html.TextBoxFor(m => m.username)
+            @Html.ValidationMessageFor(m => m.username)
+        </div>
+        <div class="form-group">
+            <label>
+                Password :
+            </label><br />
+            @Html.PasswordFor(m => m.password)
+            @Html.ValidationMessageFor(m => m.password)
+        </div>
+        <div>
+            <input type="submit" value="Register" class="text-center text-danger bg-warning btn btn-warning" />
+            @Html.DisplayFor(m => m.message)
+        </div>
+    }
+</div>
+
+

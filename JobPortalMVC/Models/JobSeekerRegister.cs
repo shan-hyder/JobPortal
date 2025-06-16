@@ -16,6 +16,8 @@ namespace JobPortalMVC.Models
     
     public class JobSeekerRegister
     {
+        
+        public string[] selectedqual { get; set; }
         public List<Qualifications> Chosenquals { get; set; }
         public string id { get; set; }
         [Required(ErrorMessage ="Enter valid name")]

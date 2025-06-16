@@ -31,14 +31,18 @@ namespace JobPortalMVC.Controllers
         }
         public ActionResult Register_Click(JobSeekerRegister modelobject)
         {
+            ModelState.Remove("Chosenquals");
             if (ModelState.IsValid)
             {
-
-
+              
                 ObjectParameter maxidob = new ObjectParameter("max_id", typeof(int));
                 entityobject.get_maxlogin(maxidob);
-                int maxid = Convert.ToInt32(maxidob.Value);
+                int maxid = 0;
                 int id = 0;
+                if (maxidob.Value !=DBNull.Value && maxidob.Value !=null)
+                {
+                     maxid = Convert.ToInt32(maxidob.Value);
+                }       
                 if (maxid == 0)
                 {
                     id = 1;
@@ -47,18 +51,18 @@ namespace JobPortalMVC.Controllers
                 {
                     id += maxid;
                 }
-                string qual = string.Join(",", modelobject.Chosenquals);
+                string qual = string.Join(",", modelobject.selectedqual);
                 modelobject.qualification = qual;
                 modelobject.Chosenquals = GetQualifications();
+
                 entityobject.register_jobseeker(id, modelobject.name, modelobject.age, modelobject.qualification, modelobject.phone, modelobject.email);
                 entityobject.insert_login(id, "JOBSEEKER", modelobject.username, modelobject.password);
                 modelobject.message = "Jobseeker Successfully Registered";
                 return View("Register_Jobseeker_Load", modelobject);
             }
             modelobject.message = "Jobseeker Registration Failed";
+            modelobject.Chosenquals = GetQualifications();
             return View("Register_Jobseeker_Load", modelobject);
-
-
         }
     }
 }
