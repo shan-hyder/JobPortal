@@ -201,5 +201,44 @@ namespace JobPortalMVC.Models
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("get_maxlogin", max_id);
         }
+    
+        public virtual int login_check(string uname, string pasw, ObjectParameter msg)
+        {
+            var unameParameter = uname != null ?
+                new ObjectParameter("uname", uname) :
+                new ObjectParameter("uname", typeof(string));
+    
+            var paswParameter = pasw != null ?
+                new ObjectParameter("pasw", pasw) :
+                new ObjectParameter("pasw", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("login_check", unameParameter, paswParameter, msg);
+        }
+    
+        public virtual ObjectResult<string> get_user(string uname, string pasw, ObjectParameter type)
+        {
+            var unameParameter = uname != null ?
+                new ObjectParameter("uname", uname) :
+                new ObjectParameter("uname", typeof(string));
+    
+            var paswParameter = pasw != null ?
+                new ObjectParameter("pasw", pasw) :
+                new ObjectParameter("pasw", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("get_user", unameParameter, paswParameter, type);
+        }
+    
+        public virtual ObjectResult<Nullable<int>> USERID(string uname, string pasw, ObjectParameter type)
+        {
+            var unameParameter = uname != null ?
+                new ObjectParameter("uname", uname) :
+                new ObjectParameter("uname", typeof(string));
+    
+            var paswParameter = pasw != null ?
+                new ObjectParameter("pasw", pasw) :
+                new ObjectParameter("pasw", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("USERID", unameParameter, paswParameter, type);
+        }
     }
 }

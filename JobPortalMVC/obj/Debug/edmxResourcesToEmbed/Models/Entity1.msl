@@ -95,5 +95,8 @@
     <FunctionImportMapping FunctionImportName="register_employer" FunctionName="MVCJOBPORTALModel.Store.register_employer" />
     <FunctionImportMapping FunctionImportName="register_jobseeker" FunctionName="MVCJOBPORTALModel.Store.register_jobseeker" />
     <FunctionImportMapping FunctionImportName="get_maxlogin" FunctionName="MVCJOBPORTALModel.Store.get_maxlogin" />
+    <FunctionImportMapping FunctionImportName="login_check" FunctionName="MVCJOBPORTALModel.Store.login_check" />
+    <FunctionImportMapping FunctionImportName="get_user" FunctionName="MVCJOBPORTALModel.Store.get_user" />
+    <FunctionImportMapping FunctionImportName="USERID" FunctionName="MVCJOBPORTALModel.Store.USERID" />
   </EntityContainerMapping>
 </Mapping>

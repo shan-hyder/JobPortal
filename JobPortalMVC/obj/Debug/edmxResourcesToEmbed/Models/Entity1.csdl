@@ -121,6 +121,21 @@
     <FunctionImport Name="get_maxlogin">
       <Parameter Name="max_id" Mode="InOut" Type="Int32" />
     </FunctionImport>
+    <FunctionImport Name="login_check">
+      <Parameter Name="uname" Mode="In" Type="String" />
+      <Parameter Name="pasw" Mode="In" Type="String" />
+      <Parameter Name="msg" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="get_user" ReturnType="Collection(String)">
+      <Parameter Name="uname" Mode="In" Type="String" />
+      <Parameter Name="pasw" Mode="In" Type="String" />
+      <Parameter Name="type" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="USERID" ReturnType="Collection(Int32)">
+      <Parameter Name="uname" Mode="In" Type="String" />
+      <Parameter Name="pasw" Mode="In" Type="String" />
+      <Parameter Name="type" Mode="InOut" Type="String" />
+    </FunctionImport>
   </EntityContainer>
   <ComplexType Name="get_jobs_Result">
     <Property Type="Int32" Name="id" Nullable="false" />

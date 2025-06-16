@@ -90,6 +90,11 @@
         <Function Name="get_maxlogin" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="max_id" Type="int" Mode="InOut" />
         </Function>
+        <Function Name="get_user" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="uname" Type="varchar" Mode="In" />
+          <Parameter Name="pasw" Type="varchar" Mode="In" />
+          <Parameter Name="type" Type="varchar" Mode="InOut" />
+        </Function>
         <Function Name="insert_jobapplication" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="employerid" Type="int" Mode="In" />
           <Parameter Name="jobseekerid" Type="int" Mode="In" />
@@ -106,6 +111,11 @@
           <Parameter Name="username" Type="varchar" Mode="In" />
           <Parameter Name="password" Type="varchar" Mode="In" />
         </Function>
+        <Function Name="login_check" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="uname" Type="varchar" Mode="In" />
+          <Parameter Name="pasw" Type="varchar" Mode="In" />
+          <Parameter Name="msg" Type="varchar" Mode="InOut" />
+        </Function>
         <Function Name="register_employer" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="id" Type="int" Mode="In" />
           <Parameter Name="name" Type="varchar" Mode="In" />
@@ -118,6 +128,11 @@
           <Parameter Name="qual" Type="varchar" Mode="In" />
           <Parameter Name="phone" Type="varchar" Mode="In" />
           <Parameter Name="email" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="USERID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="uname" Type="varchar" Mode="In" />
+          <Parameter Name="pasw" Type="varchar" Mode="In" />
+          <Parameter Name="type" Type="varchar" Mode="InOut" />
         </Function>
         <EntityContainer Name="MVCJOBPORTALModelStoreContainer">
           <EntitySet Name="Applystatus" EntityType="Self.Applystatus" Schema="dbo" store:Type="Tables" />
@@ -250,7 +265,22 @@
             <Parameter Name="email" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="get_maxlogin">
-            <Parameter Name="max_id" Mode="InOut" Type="Int32" />
+          <Parameter Name="max_id" Mode="InOut" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="login_check">
+            <Parameter Name="uname" Mode="In" Type="String" />
+            <Parameter Name="pasw" Mode="In" Type="String" />
+            <Parameter Name="msg" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="get_user" ReturnType="Collection(String)">
+            <Parameter Name="uname" Mode="In" Type="String" />
+            <Parameter Name="pasw" Mode="In" Type="String" />
+            <Parameter Name="type" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="USERID" ReturnType="Collection(Int32)">
+            <Parameter Name="uname" Mode="In" Type="String" />
+            <Parameter Name="pasw" Mode="In" Type="String" />
+            <Parameter Name="type" Mode="InOut" Type="String" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="get_jobs_Result">
@@ -364,6 +394,9 @@
           <FunctionImportMapping FunctionImportName="register_employer" FunctionName="MVCJOBPORTALModel.Store.register_employer" />
           <FunctionImportMapping FunctionImportName="register_jobseeker" FunctionName="MVCJOBPORTALModel.Store.register_jobseeker" />
           <FunctionImportMapping FunctionImportName="get_maxlogin" FunctionName="MVCJOBPORTALModel.Store.get_maxlogin" />
+          <FunctionImportMapping FunctionImportName="login_check" FunctionName="MVCJOBPORTALModel.Store.login_check" />
+          <FunctionImportMapping FunctionImportName="get_user" FunctionName="MVCJOBPORTALModel.Store.get_user" />
+          <FunctionImportMapping FunctionImportName="USERID" FunctionName="MVCJOBPORTALModel.Store.USERID" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
