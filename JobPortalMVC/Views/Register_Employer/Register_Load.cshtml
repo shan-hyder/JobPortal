@@ -1,0 +1,44 @@
+﻿@model JobPortalMVC.Models.EmployerRegister
+@{
+    ViewBag.Title = "Register_Load";
+}
+
+<h1 class="text-capitalize danger text-center">Employer Register</h1>
+<div>
+    @using (Html.BeginForm("Register_Click", "Register_Employer",FormMethod.Post))
+    {
+    <div class="jumbotron">
+        <div class="form-group">
+            <label>
+                Name :
+            </label><br />
+            @Html.TextBoxFor(m => m.name)
+            @Html.ValidationMessageFor(m => m.name)
+        </div>
+        <div class="form-group">
+            <label>
+                Email :
+            </label><br />
+            @Html.TextBoxFor(m => m.email)
+            @Html.ValidationMessageFor(m => m.email)
+        </div>
+        <div class="form-group">
+            <label>
+                Username :
+            </label><br />
+            @Html.TextBoxFor(m => m.username)
+            @Html.ValidationMessageFor(m => m.username)
+        </div>
+        <div class="form-group">
+            <label>
+                Password :
+            </label><br />
+            @Html.PasswordFor(m => m.password)
+            @Html.ValidationMessageFor(m => m.password)
+        </div>
+        <input type="submit" value="Register" />
+        @Html.DisplayFor(m=>m.message)
+    </div>
+    }
+</div>
+

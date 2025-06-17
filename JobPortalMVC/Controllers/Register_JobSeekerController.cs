@@ -47,9 +47,9 @@ namespace JobPortalMVC.Controllers
                 {
                     id = 1;
                 }
-                else
+                else if(maxid>0)
                 {
-                    id += maxid;
+                    id = maxid+1;
                 }
                 string qual = string.Join(",", modelobject.selectedqual);
                 modelobject.qualification = qual;

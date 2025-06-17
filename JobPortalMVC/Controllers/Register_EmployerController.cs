@@ -22,15 +22,19 @@ namespace JobPortalMVC.Controllers
             {
                 ObjectParameter maxidob = new ObjectParameter("max_id", typeof(int));
                 entityobject.get_maxlogin(maxidob);
-                int maxid =Convert.ToInt32(maxidob.Value);
+                int maxid = 0;
                 int id = 0;
-                if(maxid==0)
+                if (maxidob.Value != DBNull.Value && maxidob.Value != null)
+                {
+                    maxid = Convert.ToInt32(maxidob.Value);
+                }
+                if (maxid==0)
                 {
                     id = 1;
                 }
-                else
+                else if(maxid>0)
                 {
-                    id += maxid;
+                    id = maxid+1;
                 }
                 entityobject.register_employer(id, modelobject.name, modelobject.email);
                 entityobject.insert_login(id,"EMPLOYER", modelobject.username, modelobject.password);
