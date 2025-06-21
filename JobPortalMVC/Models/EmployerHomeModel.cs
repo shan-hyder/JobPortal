@@ -6,8 +6,22 @@ using System.Web;
 
 namespace JobPortalMVC.Models
 {
+    public class Applications
+    {
+        public int employerid { get; set; }
+        public int jobseekerid { get; set; }
+        public string jobname { get; set; }
+        public string name { get; set; }
+        public string phone { get; set; }
+        public string email { get; set; }
+        public string resume { get; set; }
+        public string status { get; set; }
+
+
+    }
     public class EmployerHomeModel
     {
+        public List<Applications> Applicantretreive { get; set; } = new List<Applications>();
         public int id { get; set; }
         [Required(ErrorMessage ="Invalid entry")]
         public string name { get; set; }
@@ -24,17 +38,5 @@ namespace JobPortalMVC.Models
         public DateTime validuntil { get; set; }
         public string mesg { get; set; }
     }
-    public class Applications
-    {
-        public int employerid { get; set; }
-        public int jobseekerid { get; set; }
-        public string jobname { get; set; }
-        public string name { get; set; }
-        public string phone { get; set; }
-        public string email { get; set; }
-        public string resume { get; set; }
-        public string status { get; set; }
-
-
-    }
+    
 }

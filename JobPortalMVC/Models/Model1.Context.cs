@@ -275,5 +275,22 @@ namespace JobPortalMVC.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("get_empname", unameParameter, pswdParameter, name);
         }
+    
+        public virtual int updatestatus(Nullable<int> empid, Nullable<int> jobsid, string status)
+        {
+            var empidParameter = empid.HasValue ?
+                new ObjectParameter("empid", empid) :
+                new ObjectParameter("empid", typeof(int));
+    
+            var jobsidParameter = jobsid.HasValue ?
+                new ObjectParameter("jobsid", jobsid) :
+                new ObjectParameter("jobsid", typeof(int));
+    
+            var statusParameter = status != null ?
+                new ObjectParameter("status", status) :
+                new ObjectParameter("status", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("updatestatus", empidParameter, jobsidParameter, statusParameter);
+        }
     }
 }

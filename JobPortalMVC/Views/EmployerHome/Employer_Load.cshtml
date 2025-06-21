@@ -5,7 +5,86 @@
 }
 
 <h1 class="text-center text-danger">Welcome @ViewBag.empname</h1>
-<div class="d-flex justify-content-center align-items-center"></div>
+<div class="d-flex justify-content-center align-items-center">
+    @if(ViewBag.Statusmesg!=null)
+            {
+        <div class="alert alert-success text-center">
+           @ViewBag.Statusmesg
+        </div>
+
+            }
+
+  
+
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>
+                    Job Name
+                </th>
+                <th>
+                    Applicant Name
+                </th>
+                <th>
+                    Phone
+                </th>
+                <th>
+                    Email
+                </th>
+                <th>
+                    Resume
+                </th>
+                <th>
+                    Status
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Applicantretreive)
+            {
+            <tr>
+                <td>
+                    @item.jobname
+                </td>
+                <td>
+                    @item.name
+                </td>
+                <td>
+                    @item.phone
+                </td>
+                <td>
+                    @item.email
+                </td>
+                <td>
+                    @item.resume
+                </td>
+                <td>
+                    <a href="@item.resume" target="_blank">View</a>
+                </td>
+                <td>
+                    @item.status
+                </td>
+
+
+                <td>
+                    <form action="/EmployerHome/UpdateStatus" method="post">
+                        <input type="hidden" name="jobseekerid" value="@item.jobseekerid" />
+                        <input type="hidden" name="employerid" value="@item.employerid" />
+                        <input type="submit" value="Accept" name="Status" class="btn btn-success" />
+                        <input type="submit" value="Reject" name="Staus" class="btn btn-danger" />
+                        @Html.DisplayFor(m=>m.mesg)
+                    </form>
+                </td>
+
+
+            </tr>
+            }
+        </tbody>
+
+
+    </table>
+</div>
+
 
 @*<div>
     @using (Html.BeginForm())

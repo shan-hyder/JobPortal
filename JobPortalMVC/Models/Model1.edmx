@@ -142,6 +142,11 @@
           <Parameter Name="phone" Type="varchar" Mode="In" />
           <Parameter Name="email" Type="varchar" Mode="In" />
         </Function>
+        <Function Name="updatestatus" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="empid" Type="int" Mode="In" />
+          <Parameter Name="jobsid" Type="int" Mode="In" />
+          <Parameter Name="status" Type="varchar" Mode="In" />
+        </Function>
         <Function Name="USERID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="uname" Type="varchar" Mode="In" />
           <Parameter Name="pasw" Type="varchar" Mode="In" />
@@ -298,6 +303,11 @@
             <Parameter Name="name" Mode="InOut" Type="String" />
           </FunctionImport>
           <EntitySet Name="UserLogin1" EntityType="MVCJOBPORTALModel.UserLogin1" />
+          <FunctionImport Name="updatestatus">
+            <Parameter Name="empid" Mode="In" Type="Int32" />
+            <Parameter Name="jobsid" Mode="In" Type="Int32" />
+            <Parameter Name="status" Mode="In" Type="String" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="get_application_Result">
           <Property Type="Int32" Name="id" Nullable="false" />
@@ -451,6 +461,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="updatestatus" FunctionName="MVCJOBPORTALModel.Store.updatestatus" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
