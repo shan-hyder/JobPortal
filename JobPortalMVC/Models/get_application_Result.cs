@@ -10,14 +10,17 @@
 namespace JobPortalMVC.Models
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class UserLogin
+    public partial class get_application_Result
     {
-        public int Log_id { get; set; }
-        public int Reg_id { get; set; }
-        public string type { get; set; }
-        public string username { get; set; }
-        public string password { get; set; }
+        public int id { get; set; }
+        public int employerid { get; set; }
+        public int jobseekerid { get; set; }
+        public string jobname { get; set; }
+        public string name { get; set; }
+        public string phone { get; set; }
+        public string email { get; set; }
+        public string resume { get; set; }
+        public string status { get; set; }
     }
 }

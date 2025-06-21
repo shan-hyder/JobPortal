@@ -15,10 +15,10 @@ namespace JobPortalMVC.Models
     using System.Data.Entity.Core.Objects;
     using System.Linq;
     
-    public partial class MVCJOBPORTALEntities : DbContext
+    public partial class MVCJOBPORTALEntities1 : DbContext
     {
-        public MVCJOBPORTALEntities()
-            : base("name=MVCJOBPORTALEntities")
+        public MVCJOBPORTALEntities1()
+            : base("name=MVCJOBPORTALEntities1")
         {
         }
     
@@ -32,7 +32,7 @@ namespace JobPortalMVC.Models
         public virtual DbSet<jobapplication> jobapplications { get; set; }
         public virtual DbSet<Job> Jobs { get; set; }
         public virtual DbSet<Jobseeker> Jobseekers { get; set; }
-        public virtual DbSet<UserLogin> UserLogins { get; set; }
+        public virtual DbSet<UserLogin1> UserLogin1 { get; set; }
     
         public virtual int add_job(string name, string qual, string experience, string salary, Nullable<int> employerid, string employername, Nullable<System.DateTime> postdate, Nullable<System.DateTime> validuntil)
         {
@@ -88,9 +88,36 @@ namespace JobPortalMVC.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("confirm_job", jobseekeridParameter, statusParameter, jobnameParameter);
         }
     
+        public virtual ObjectResult<get_application_Result> get_application(Nullable<int> empid)
+        {
+            var empidParameter = empid.HasValue ?
+                new ObjectParameter("empid", empid) :
+                new ObjectParameter("empid", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<get_application_Result>("get_application", empidParameter);
+        }
+    
         public virtual ObjectResult<get_jobs_Result> get_jobs()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<get_jobs_Result>("get_jobs");
+        }
+    
+        public virtual int get_maxlogin(ObjectParameter max_id)
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("get_maxlogin", max_id);
+        }
+    
+        public virtual int get_user(string uname, string pasw, ObjectParameter type)
+        {
+            var unameParameter = uname != null ?
+                new ObjectParameter("uname", uname) :
+                new ObjectParameter("uname", typeof(string));
+    
+            var paswParameter = pasw != null ?
+                new ObjectParameter("pasw", pasw) :
+                new ObjectParameter("pasw", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("get_user", unameParameter, paswParameter, type);
         }
     
         public virtual int insert_jobapplication(Nullable<int> employerid, Nullable<int> jobseekerid, string jobname, string jobseekername, string jobseekerphone, string resume, string jobseekeremail, string status)
@@ -151,6 +178,19 @@ namespace JobPortalMVC.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("insert_login", regidParameter, typeParameter, usernameParameter, passwordParameter);
         }
     
+        public virtual int login_check(string uname, string pasw, ObjectParameter msg)
+        {
+            var unameParameter = uname != null ?
+                new ObjectParameter("uname", uname) :
+                new ObjectParameter("uname", typeof(string));
+    
+            var paswParameter = pasw != null ?
+                new ObjectParameter("pasw", pasw) :
+                new ObjectParameter("pasw", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("login_check", unameParameter, paswParameter, msg);
+        }
+    
         public virtual int register_employer(Nullable<int> id, string name, string email)
         {
             var idParameter = id.HasValue ?
@@ -197,37 +237,6 @@ namespace JobPortalMVC.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("register_jobseeker", idParameter, nameParameter, ageParameter, qualParameter, phoneParameter, emailParameter);
         }
     
-        public virtual int get_maxlogin(ObjectParameter max_id)
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("get_maxlogin", max_id);
-        }
-    
-        public virtual int login_check(string uname, string pasw, ObjectParameter msg)
-        {
-            var unameParameter = uname != null ?
-                new ObjectParameter("uname", uname) :
-                new ObjectParameter("uname", typeof(string));
-    
-            var paswParameter = pasw != null ?
-                new ObjectParameter("pasw", pasw) :
-                new ObjectParameter("pasw", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("login_check", unameParameter, paswParameter, msg);
-        }
-    
-        public virtual ObjectResult<string> get_user(string uname, string pasw, ObjectParameter type)
-        {
-            var unameParameter = uname != null ?
-                new ObjectParameter("uname", uname) :
-                new ObjectParameter("uname", typeof(string));
-    
-            var paswParameter = pasw != null ?
-                new ObjectParameter("pasw", pasw) :
-                new ObjectParameter("pasw", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("get_user", unameParameter, paswParameter, type);
-        }
-    
         public virtual ObjectResult<Nullable<int>> USERID(string uname, string pasw, ObjectParameter type)
         {
             var unameParameter = uname != null ?
@@ -239,6 +248,32 @@ namespace JobPortalMVC.Models
                 new ObjectParameter("pasw", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("USERID", unameParameter, paswParameter, type);
+        }
+    
+        public virtual ObjectResult<Nullable<int>> get_empid(string uname, string pswd, ObjectParameter id)
+        {
+            var unameParameter = uname != null ?
+                new ObjectParameter("uname", uname) :
+                new ObjectParameter("uname", typeof(string));
+    
+            var pswdParameter = pswd != null ?
+                new ObjectParameter("pswd", pswd) :
+                new ObjectParameter("pswd", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("get_empid", unameParameter, pswdParameter, id);
+        }
+    
+        public virtual int get_empname(string uname, string pswd, ObjectParameter name)
+        {
+            var unameParameter = uname != null ?
+                new ObjectParameter("uname", uname) :
+                new ObjectParameter("uname", typeof(string));
+    
+            var pswdParameter = pswd != null ?
+                new ObjectParameter("pswd", pswd) :
+                new ObjectParameter("pswd", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("get_empname", unameParameter, pswdParameter, name);
         }
     }
 }

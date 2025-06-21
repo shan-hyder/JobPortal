@@ -1,5 +1,3 @@
-C:\Users\shibi\source\repos\JobPortalMVC\JobPortalMVC\obj\Debug\JobPortalMVC.csproj.AssemblyReference.cache
-C:\Users\shibi\source\repos\JobPortalMVC\JobPortalMVC\obj\Debug\JobPortalMVC.csproj.CoreCompileInputs.cache
 C:\Users\shibi\source\repos\JobPortalMVC\JobPortalMVC\bin\JobPortalMVC.dll.config
 C:\Users\shibi\source\repos\JobPortalMVC\JobPortalMVC\bin\JobPortalMVC.dll
 C:\Users\shibi\source\repos\JobPortalMVC\JobPortalMVC\bin\JobPortalMVC.pdb
@@ -78,6 +76,7 @@ C:\Users\shibi\source\repos\JobPortalMVC\JobPortalMVC\bin\System.Web.WebPages.Ra
 C:\Users\shibi\source\repos\JobPortalMVC\JobPortalMVC\bin\Newtonsoft.Json.xml
 C:\Users\shibi\source\repos\JobPortalMVC\JobPortalMVC\bin\Antlr3.Runtime.pdb
 C:\Users\shibi\source\repos\JobPortalMVC\JobPortalMVC\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\shibi\source\repos\JobPortalMVC\JobPortalMVC\obj\Debug\JobPortalMVC.csproj.CoreCompileInputs.cache
 C:\Users\shibi\source\repos\JobPortalMVC\JobPortalMVC\obj\Debug\JobPortalMVC.csproj.CopyComplete
 C:\Users\shibi\source\repos\JobPortalMVC\JobPortalMVC\obj\Debug\JobPortalMVC.dll
 C:\Users\shibi\source\repos\JobPortalMVC\JobPortalMVC\obj\Debug\JobPortalMVC.pdb

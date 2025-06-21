@@ -1,0 +1,133 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\shibi\\source\\repos\\JobPortalMVC\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{BA323EC9-B9A2-4938-8047-6F86FF3E39F1}|JobPortalMVC\\JobPortalMVC.csproj|C:\\Users\\shibi\\source\\repos\\JobPortalMVC\\jobportalmvc\\controllers\\employerhomecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BA323EC9-B9A2-4938-8047-6F86FF3E39F1}|JobPortalMVC\\JobPortalMVC.csproj|solutionrelative:jobportalmvc\\controllers\\employerhomecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BA323EC9-B9A2-4938-8047-6F86FF3E39F1}|JobPortalMVC\\JobPortalMVC.csproj|c:\\users\\shibi\\source\\repos\\jobportalmvc\\jobportalmvc\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{BA323EC9-B9A2-4938-8047-6F86FF3E39F1}|JobPortalMVC\\JobPortalMVC.csproj|solutionrelative:jobportalmvc\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BA323EC9-B9A2-4938-8047-6F86FF3E39F1}|JobPortalMVC\\JobPortalMVC.csproj|C:\\Users\\shibi\\source\\repos\\JobPortalMVC\\jobportalmvc\\models\\model1.edmx||{C99AEA30-8E36-4515-B76F-496F5A48A6AA}|",
+      "RelativeMoniker": "D:0:0:{BA323EC9-B9A2-4938-8047-6F86FF3E39F1}|JobPortalMVC\\JobPortalMVC.csproj|solutionrelative:jobportalmvc\\models\\model1.edmx||{C99AEA30-8E36-4515-B76F-496F5A48A6AA}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BA323EC9-B9A2-4938-8047-6F86FF3E39F1}|JobPortalMVC\\JobPortalMVC.csproj|C:\\Users\\shibi\\source\\repos\\JobPortalMVC\\jobportalmvc\\controllers\\register_employercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BA323EC9-B9A2-4938-8047-6F86FF3E39F1}|JobPortalMVC\\JobPortalMVC.csproj|solutionrelative:jobportalmvc\\controllers\\register_employercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BA323EC9-B9A2-4938-8047-6F86FF3E39F1}|JobPortalMVC\\JobPortalMVC.csproj|C:\\Users\\shibi\\source\\repos\\JobPortalMVC\\jobportalmvc\\controllers\\register_jobseekercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BA323EC9-B9A2-4938-8047-6F86FF3E39F1}|JobPortalMVC\\JobPortalMVC.csproj|solutionrelative:jobportalmvc\\controllers\\register_jobseekercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BA323EC9-B9A2-4938-8047-6F86FF3E39F1}|JobPortalMVC\\JobPortalMVC.csproj|C:\\Users\\shibi\\source\\repos\\JobPortalMVC\\jobportalmvc\\models\\employerhomemodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BA323EC9-B9A2-4938-8047-6F86FF3E39F1}|JobPortalMVC\\JobPortalMVC.csproj|solutionrelative:jobportalmvc\\models\\employerhomemodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BA323EC9-B9A2-4938-8047-6F86FF3E39F1}|JobPortalMVC\\JobPortalMVC.csproj|C:\\Users\\shibi\\source\\repos\\JobPortalMVC\\jobportalmvc\\controllers\\logincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BA323EC9-B9A2-4938-8047-6F86FF3E39F1}|JobPortalMVC\\JobPortalMVC.csproj|solutionrelative:jobportalmvc\\controllers\\logincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 5,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Web.config",
+              "DocumentMoniker": "C:\\Users\\shibi\\source\\repos\\JobPortalMVC\\JobPortalMVC\\Web.config",
+              "RelativeDocumentMoniker": "JobPortalMVC\\Web.config",
+              "ToolTip": "C:\\Users\\shibi\\source\\repos\\JobPortalMVC\\JobPortalMVC\\Web.config",
+              "RelativeToolTip": "JobPortalMVC\\Web.config",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADoAAAAVAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
+              "WhenOpened": "2025-06-20T16:53:00.913Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Register_JobSeekerController.cs",
+              "DocumentMoniker": "C:\\Users\\shibi\\source\\repos\\JobPortalMVC\\JobPortalMVC\\Controllers\\Register_JobSeekerController.cs",
+              "RelativeDocumentMoniker": "JobPortalMVC\\Controllers\\Register_JobSeekerController.cs",
+              "ToolTip": "C:\\Users\\shibi\\source\\repos\\JobPortalMVC\\JobPortalMVC\\Controllers\\Register_JobSeekerController.cs",
+              "RelativeToolTip": "JobPortalMVC\\Controllers\\Register_JobSeekerController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAABGAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-20T16:42:10.319Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Register_EmployerController.cs",
+              "DocumentMoniker": "C:\\Users\\shibi\\source\\repos\\JobPortalMVC\\JobPortalMVC\\Controllers\\Register_EmployerController.cs",
+              "RelativeDocumentMoniker": "JobPortalMVC\\Controllers\\Register_EmployerController.cs",
+              "ToolTip": "C:\\Users\\shibi\\source\\repos\\JobPortalMVC\\JobPortalMVC\\Controllers\\Register_EmployerController.cs",
+              "RelativeToolTip": "JobPortalMVC\\Controllers\\Register_EmployerController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAArAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-20T16:41:57.56Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "LoginController.cs",
+              "DocumentMoniker": "C:\\Users\\shibi\\source\\repos\\JobPortalMVC\\JobPortalMVC\\Controllers\\LoginController.cs",
+              "RelativeDocumentMoniker": "JobPortalMVC\\Controllers\\LoginController.cs",
+              "ToolTip": "C:\\Users\\shibi\\source\\repos\\JobPortalMVC\\JobPortalMVC\\Controllers\\LoginController.cs",
+              "RelativeToolTip": "JobPortalMVC\\Controllers\\LoginController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAABGAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-20T16:41:41.493Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Model1.edmx [Diagram1]",
+              "DocumentMoniker": "C:\\Users\\shibi\\source\\repos\\JobPortalMVC\\JobPortalMVC\\Models\\Model1.edmx",
+              "RelativeDocumentMoniker": "JobPortalMVC\\Models\\Model1.edmx",
+              "ToolTip": "C:\\Users\\shibi\\source\\repos\\JobPortalMVC\\JobPortalMVC\\Models\\Model1.edmx [Diagram1]",
+              "RelativeToolTip": "JobPortalMVC\\Models\\Model1.edmx [Diagram1]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001116|",
+              "WhenOpened": "2025-06-20T16:00:16.836Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "EmployerHomeController.cs",
+              "DocumentMoniker": "C:\\Users\\shibi\\source\\repos\\JobPortalMVC\\JobPortalMVC\\Controllers\\EmployerHomeController.cs",
+              "RelativeDocumentMoniker": "JobPortalMVC\\Controllers\\EmployerHomeController.cs",
+              "ToolTip": "C:\\Users\\shibi\\source\\repos\\JobPortalMVC\\JobPortalMVC\\Controllers\\EmployerHomeController.cs",
+              "RelativeToolTip": "JobPortalMVC\\Controllers\\EmployerHomeController.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAwAAAAcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-19T16:55:22.137Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "EmployerHomeModel.cs",
+              "DocumentMoniker": "C:\\Users\\shibi\\source\\repos\\JobPortalMVC\\JobPortalMVC\\Models\\EmployerHomeModel.cs",
+              "RelativeDocumentMoniker": "JobPortalMVC\\Models\\EmployerHomeModel.cs",
+              "ToolTip": "C:\\Users\\shibi\\source\\repos\\JobPortalMVC\\JobPortalMVC\\Models\\EmployerHomeModel.cs",
+              "RelativeToolTip": "JobPortalMVC\\Models\\EmployerHomeModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-19T16:52:48.834Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

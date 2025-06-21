@@ -10,7 +10,7 @@ namespace JobPortalMVC.Controllers
 {
     public class Register_EmployerController : Controller
     {
-        MVCJOBPORTALEntities entityobject = new MVCJOBPORTALEntities();
+        MVCJOBPORTALEntities1 entityobject = new MVCJOBPORTALEntities1();
         // GET: Register_Employer
         public ActionResult Register_Load()
         {
