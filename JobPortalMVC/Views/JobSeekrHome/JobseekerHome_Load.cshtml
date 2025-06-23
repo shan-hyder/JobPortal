@@ -1,0 +1,42 @@
+﻿@model JobPortalMVC.Models.JobSeekerRegister
+@{
+    ViewBag.Title = "JobseekerHome_Load";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1 class="text-center text-danger">Welcome @ViewBag.Jobseekername</h1>
+
+@using (Html.BeginForm("JobSearch", "ApplyJobs", FormMethod.Get))
+{
+    <div class="row">
+        <div class="col-md-6">
+
+            <label for="SearchTerm" class="form-label text-danger">Search jobs</label>
+            <input type="text" name="SearchTerm" class="form-control" id="SearchTerm" placeholder="eg:Software" />
+        </div>
+        <div class="col-md-2 d-flex align-items-end">
+            <button type="submit" class="btn btn-success">Search</button>
+        </div>
+    </div>
+}
+
+
+<div class="jumbotron d-flex justify-content-center">
+
+    @using (Html.BeginForm("", "", FormMethod.Get))
+    {
+
+
+    }
+
+
+
+    @using (Html.BeginForm("ApplyHome_Load", "ApplyJobs", FormMethod.Get))
+    {
+
+        <button type="submit" class="btn btn-success m-2">Apply for Jobs</button>
+
+    }
+
+</div>
+

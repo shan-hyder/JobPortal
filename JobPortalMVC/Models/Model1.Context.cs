@@ -292,5 +292,14 @@ namespace JobPortalMVC.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("updatestatus", empidParameter, jobsidParameter, statusParameter);
         }
+    
+        public virtual ObjectResult<get_jobseeker_application_Result> get_jobseeker_application(Nullable<int> id)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("id", id) :
+                new ObjectParameter("id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<get_jobseeker_application_Result>("get_jobseeker_application", idParameter);
+        }
     }
 }

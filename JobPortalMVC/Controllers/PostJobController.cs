@@ -13,7 +13,9 @@ namespace JobPortalMVC.Controllers
         // GET: PostJob
         public ActionResult PostJob_Load()
         {
-            return View();
+            PostJobModel modelobject = new PostJobModel();
+            modelobject.selecetedqual = getqual();
+            return View(modelobject);
         }
         public ActionResult PostJob_Click(EmployerHomeModel modelobject)
         {
@@ -29,5 +31,23 @@ namespace JobPortalMVC.Controllers
             modelobject.mesg = "invalid inputs";
             return View("Employer_Load", "EmployerHome", modelobject);
         }
+        public List<qualification> getqual()
+        {
+            List<qualification> sts = new List<qualification>()
+            { new qualification{Stext="SSLC",Svalue="SSLC",Iscehcked=false},
+             new qualification{Stext="PLUSTWO",Svalue="PLUSTWO",Iscehcked=false},
+            new qualification{Stext="BCA",Svalue="BCA",Iscehcked=false},
+            new qualification{Stext="MCA",Svalue="MCA",Iscehcked=false},
+            new qualification{Stext="B.TECH",Svalue="B.TECH",Iscehcked=false},
+            new qualification{Stext="BSC.CS",Svalue="BSC.CS",Iscehcked=false},
+            };
+            return sts;
+
+                
+                
+                
+                
+        }
     }
+    
 }

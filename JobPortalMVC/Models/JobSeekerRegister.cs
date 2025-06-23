@@ -13,10 +13,16 @@ namespace JobPortalMVC.Models
         public bool Ischecked { get; set; }
 
     }
-    
+    public class AppliedStatus
+    {
+        public string Jobname { get; set; }
+        public string Status { get; set; }
+    }
+
     public class JobSeekerRegister
     {
-        
+
+        public List<AppliedStatus> ApplyStatus {get;set;} 
         public string[] selectedqual { get; set; }
         public List<Qualifications> Chosenquals { get; set; }
         public string id { get; set; }

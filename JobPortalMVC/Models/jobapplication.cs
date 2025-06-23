@@ -23,5 +23,6 @@ namespace JobPortalMVC.Models
         public string email { get; set; }
         public string resume { get; set; }
         public string status { get; set; }
+        public string employername { get; set; }
     }
 }

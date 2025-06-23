@@ -128,6 +128,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\ApplyJobsController.cs" />
     <Compile Include="Controllers\EmployerHomeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\JobSeekrHomeController.cs" />
@@ -147,6 +148,9 @@
     <Compile Include="Models\EmployerHomeModel.cs" />
     <Compile Include="Models\EmployerRegister.cs" />
     <Compile Include="Models\get_application_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\get_jobseeker_application_Result.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\get_jobs_Result.cs">
@@ -178,6 +182,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Model1.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\PostJobModel.cs" />
     <Compile Include="Models\UserLogin1.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -240,12 +245,13 @@
     <Content Include="Views\Register_Employer\Register_Load.cshtml" />
     <Content Include="Views\Login\Page_Load.cshtml" />
     <Content Include="Views\EmployerHome\Employer_Load.cshtml" />
+    <Content Include="Views\JobSeekrHome\JobseekerHome_Load.cshtml" />
+    <Content Include="Views\PostJob\PostJob_Load.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\ApplyJobs\" />
     <Folder Include="Views\Default\" />
-    <Folder Include="Views\JobSeekrHome\" />
-    <Folder Include="Views\PostJob\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

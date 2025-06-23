@@ -6,15 +6,15 @@
 
 <h1 class="text-center text-danger">Welcome @ViewBag.empname</h1>
 <div class="d-flex justify-content-center align-items-center">
-    @if(ViewBag.Statusmesg!=null)
-            {
+    @if (ViewBag.Statusmesg != null)
+    {
         <div class="alert alert-success text-center">
-           @ViewBag.Statusmesg
+            @ViewBag.Statusmesg
         </div>
 
-            }
+    }
 
-  
+
 
     <table class="table table-bordered">
         <thead>
@@ -42,47 +42,52 @@
         <tbody>
             @foreach (var item in Model.Applicantretreive)
             {
-            <tr>
-                <td>
-                    @item.jobname
-                </td>
-                <td>
-                    @item.name
-                </td>
-                <td>
-                    @item.phone
-                </td>
-                <td>
-                    @item.email
-                </td>
-                <td>
-                    @item.resume
-                </td>
-                <td>
-                    <a href="@item.resume" target="_blank">View</a>
-                </td>
-                <td>
-                    @item.status
-                </td>
+                <tr>
+                    <td>
+                        @item.jobname
+                    </td>
+                    <td>
+                        @item.name
+                    </td>
+                    <td>
+                        @item.phone
+                    </td>
+                    <td>
+                        @item.email
+                    </td>
+                    <td>
+                        <a href="@item.resume" target="_blank">View</a>
+                    </td>
+                    <td>
+                        @item.status
+                    </td>
 
 
-                <td>
-                    <form action="/EmployerHome/UpdateStatus" method="post">
-                        <input type="hidden" name="jobseekerid" value="@item.jobseekerid" />
-                        <input type="hidden" name="employerid" value="@item.employerid" />
-                        <input type="submit" value="Accept" name="Status" class="btn btn-success" />
-                        <input type="submit" value="Reject" name="Staus" class="btn btn-danger" />
-                        @Html.DisplayFor(m=>m.mesg)
-                    </form>
-                </td>
+                    <td>
+                        <form action="/EmployerHome/UpdateStatus" method="post">
+                            <input type="hidden" name="jobseekerid" value="@item.jobseekerid" />
+                            <input type="hidden" name="employerid" value="@item.employerid" />
+                            <input type="submit" value="Accept" name="Status" class="btn btn-success" />
+                            <input type="submit" value="Reject" name="Status" class="btn btn-danger" />
+
+                        </form>
+                    </td>
 
 
-            </tr>
+                </tr>
             }
         </tbody>
 
 
     </table>
+    @Html.DisplayFor(m => m.mesg)
+</div>
+<div class="jumbotron">
+    @using (Html.BeginForm("PostJob_Load", "PostJob",FormMethod.Get))
+            {
+                <button type="submit" class="btn btn-primary">Post Job</button>
+            }
+
 </div>
 
 
