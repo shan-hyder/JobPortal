@@ -165,6 +165,7 @@
     <Compile Include="Models\Jobseeker.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\JobseekerHome.cs" />
     <Compile Include="Models\JobSeekerRegister.cs" />
     <Compile Include="Models\Login.cs" />
     <Compile Include="Models\Model1.Context.cs">

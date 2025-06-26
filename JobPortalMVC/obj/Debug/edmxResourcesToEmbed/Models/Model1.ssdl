@@ -99,6 +99,11 @@
   <Function Name="get_jobseeker_application" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="id" Type="int" Mode="In" />
   </Function>
+  <Function Name="get_jobseeker_name" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="uname" Type="varchar" Mode="In" />
+    <Parameter Name="pswd" Type="varchar" Mode="In" />
+    <Parameter Name="name" Type="varchar" Mode="InOut" />
+  </Function>
   <Function Name="get_maxlogin" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="max_id" Type="int" Mode="InOut" />
   </Function>

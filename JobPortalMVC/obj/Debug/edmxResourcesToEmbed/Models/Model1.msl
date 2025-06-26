@@ -103,7 +103,6 @@
     <FunctionImportMapping FunctionImportName="register_employer" FunctionName="MVCJOBPORTALModel.Store.register_employer" />
     <FunctionImportMapping FunctionImportName="register_jobseeker" FunctionName="MVCJOBPORTALModel.Store.register_jobseeker" />
     <FunctionImportMapping FunctionImportName="USERID" FunctionName="MVCJOBPORTALModel.Store.USERID" />
-    <FunctionImportMapping FunctionImportName="get_empid" FunctionName="MVCJOBPORTALModel.Store.get_empid" />
     <FunctionImportMapping FunctionImportName="get_empname" FunctionName="MVCJOBPORTALModel.Store.get_empname" />
     <EntitySetMapping Name="UserLogin1">
       <EntityTypeMapping TypeName="MVCJOBPORTALModel.UserLogin1">
@@ -132,5 +131,7 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="get_empid2" FunctionName="MVCJOBPORTALModel.Store.get_empid" />
+    <FunctionImportMapping FunctionImportName="get_jobseeker_name" FunctionName="MVCJOBPORTALModel.Store.get_jobseeker_name" />
   </EntityContainerMapping>
 </Mapping>

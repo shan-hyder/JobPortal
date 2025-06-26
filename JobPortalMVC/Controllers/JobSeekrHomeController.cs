@@ -12,24 +12,30 @@ namespace JobPortalMVC.Controllers
         MVCJOBPORTALEntities1 entityobject = new MVCJOBPORTALEntities1();
         // GET: JobSeekrHome
         
-        public ActionResult JobseekerHome_Load()
+        public ActionResult JobseekerHome_Load(JobseekerHome modelobject)
         {
-            int id = Convert.ToInt32(Session["jobseekerid"]);
-            var result = entityobject.get_jobseeker_application(id);
-
-            List<AppliedStatus> appliedStatuses = result.Select(r => new AppliedStatus
+            var jobs = entityobject.get_jobs().ToList();
+            var model = new JobseekerHome
             {
-                Jobname = r.jobname,
-                Status = r.status
-            }
-            ).ToList();
-            JobSeekerRegister modelobject = new JobSeekerRegister();
-            modelobject.ApplyStatus = appliedStatuses;
+                alljobs = jobs.Select(x => new Jobs
+                {
+                    id = x.id,
+                    name = x.name,
+                    qualification = x.qualification,
+                    experience = x.experience,
+                    salary = x.salary,
+                    employerid = x.employerid,
+                    employername = x.employername,
+                    postdate = x.postdate,
+                    validuntil = x.validuntil
+                }).ToList()
+            };   
+            int id = Convert.ToInt32(Session["jobsid"]);       
+            ViewBag.name = Session["jobsname"].ToString();
+            var result = entityobject.get_jobseeker_application(id);
+            return View(model);
 
-              
-
-
-            return View(modelobject);
+            
         }
         
         

@@ -34,6 +34,19 @@ namespace JobPortalMVC.Controllers
                     string usertype = type.Value.ToString();
                     if(usertype == "JOBSEEKER")
                     {
+                        ObjectParameter uname = new ObjectParameter("name", typeof(string));
+                        entityobject.get_jobseeker_name(modelobject.username, modelobject.password, uname);
+                        string name = uname.Value.ToString();
+                        Session["jobsname"] = name;
+                        ObjectParameter empidParam = new ObjectParameter("id", typeof(int));
+                        entityobject.get_empid2(modelobject.username, modelobject.password, empidParam);
+
+                        int empid = empidParam.Value != null ? Convert.ToInt32(empidParam.Value) : 0;
+                        if (empid != 0)
+                        {
+                            Session["jobsid"] = empid;
+                        }
+
                         return RedirectToAction("JobseekerHome_Load", "JobSeekrHome");
                     }
                     else if(usertype == "EMPLOYER")
@@ -45,9 +58,10 @@ namespace JobPortalMVC.Controllers
                         {
                             Session["empname"] = empname;
                         }
-                        ObjectParameter param1 = new ObjectParameter("id", typeof(int));
-                        entityobject.get_empid(modelobject.username, modelobject.password, param1);
-                        int empid = Convert.ToInt32(param1.Value);
+                        ObjectParameter empidParam = new ObjectParameter("id", typeof(int));
+                        entityobject.get_empid2(modelobject.username, modelobject.password, empidParam);
+
+                        int empid = empidParam.Value != null ? Convert.ToInt32(empidParam.Value) : 0;
                         if (empid !=0)
                         {
                             Session["empid"] = empid;

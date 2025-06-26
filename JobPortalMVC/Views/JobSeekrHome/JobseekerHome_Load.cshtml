@@ -1,12 +1,11 @@
-﻿@model JobPortalMVC.Models.JobSeekerRegister
+﻿@model JobPortalMVC.Models.JobseekerHome
 @{
     ViewBag.Title = "JobseekerHome_Load";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1 class="text-center text-danger">Welcome @ViewBag.Jobseekername</h1>
-
-@using (Html.BeginForm("JobSearch", "ApplyJobs", FormMethod.Get))
+<h1 class="text-center text-danger">Welcome @ViewBag.name</h1>
+@using (Html.BeginForm("JobSearch", "ApplyJobs", FormMethod.Post))
 {
     <div class="row">
         <div class="col-md-6">
@@ -22,21 +21,78 @@
 
 
 <div class="jumbotron d-flex justify-content-center">
+   <h2 class="text-center text-danger">Job Postes By Companies</h2>
 
-    @using (Html.BeginForm("", "", FormMethod.Get))
+    @using (Html.BeginForm("JobseekerHome_Load", "JobSeekrHome", FormMethod.Get))
     {
+        <div>
+            <table class="table-bordered">
+                <thead>
+                    <tr>
+                        <td>
+                           Job Name
+                        </td>
+                        <td>
+                           Req Qualification
+                        </td>
+                        <td>
+                            Req Experience
+                        </td>
+                        <td>
+                            Salary
+                        </td>
+                        <td>
+                            Employer Name
+                        </td>
+                        <td>
+                            Post Date
+                        </td>
+                        <td>
+                            Valid Until
+                        </td>
+                        <td>
+                            Apply
+                        </td>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var i in Model.alljobs)
+                    {
+                        <tr>
+                            <td>
+                                @i.name
+                            </td>
+                            <td>@i.qualification</td>
+                            <td>@i.experience</td>
+                            <td>
+                                @i.salary
+                            </td>
+                            <td>
+                                @i.employername
+                            </td>
+                            <td>
+                                @i.postdate
+                            </td>
+                            <td>
+                                @i.validuntil
+                            </td>
+                            <td>
+                                @using (Html.BeginForm("","",FormMethod.Post))
+                    {
+                                    @Html.Hidden("JobId",i.id)
+                        <button type="submit" class="btn btn-primary btn-sm">Apply</button>
+                    }
+                            </td>
+                        </tr>
+
+                    }
+                </tbody>
+               
+
+            </table>
+        </div>
 
 
     }
-
-
-
-    @using (Html.BeginForm("ApplyHome_Load", "ApplyJobs", FormMethod.Get))
-    {
-
-        <button type="submit" class="btn btn-success m-2">Apply for Jobs</button>
-
-    }
-
 </div>
 

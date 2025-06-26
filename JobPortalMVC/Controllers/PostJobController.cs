@@ -17,19 +17,21 @@ namespace JobPortalMVC.Controllers
             modelobject.selecetedqual = getqual();
             return View(modelobject);
         }
-        public ActionResult PostJob_Click(EmployerHomeModel modelobject)
+        public ActionResult PostJob_Click(PostJobModel modelobject)
         {
            if(ModelState.IsValid)
             {
-                int empid=Convert.ToInt32(Session["Empid"]);
+                string qual = string.Join(",", modelobject.qualification);
+                int empid=Convert.ToInt32(Session["empid"]);
                 string empname = Session["empname"].ToString();
                 DateTime exp = DateTime.Now.AddDays(30);
-                entityobject.add_job(modelobject.name, modelobject.qualification, modelobject.experience, modelobject.salary, empid, empname, DateTime.Now, exp);
-                modelobject.mesg = "Job Posted Successfully";
-                return View("Employer_Load", "EmployerHomeModel", modelobject);
+                entityobject.add_job(modelobject.name,qual, modelobject.experience, (modelobject.salary).ToString(),empid, empname, DateTime.Now, exp);
+                modelobject.message = "Job Posted Successfully";
+                return RedirectToAction("Employer_Load", "EmployerHome");
             }
-            modelobject.mesg = "invalid inputs";
-            return View("Employer_Load", "EmployerHome", modelobject);
+            modelobject.selecetedqual = getqual();
+            modelobject.message = "invalid inputs";
+            return View("PostJob_Load", modelobject);
         }
         public List<qualification> getqual()
         {
@@ -41,12 +43,7 @@ namespace JobPortalMVC.Controllers
             new qualification{Stext="B.TECH",Svalue="B.TECH",Iscehcked=false},
             new qualification{Stext="BSC.CS",Svalue="BSC.CS",Iscehcked=false},
             };
-            return sts;
-
-                
-                
-                
-                
+            return sts;          
         }
     }
     

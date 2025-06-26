@@ -250,19 +250,6 @@ namespace JobPortalMVC.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("USERID", unameParameter, paswParameter, type);
         }
     
-        public virtual ObjectResult<Nullable<int>> get_empid(string uname, string pswd, ObjectParameter id)
-        {
-            var unameParameter = uname != null ?
-                new ObjectParameter("uname", uname) :
-                new ObjectParameter("uname", typeof(string));
-    
-            var pswdParameter = pswd != null ?
-                new ObjectParameter("pswd", pswd) :
-                new ObjectParameter("pswd", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("get_empid", unameParameter, pswdParameter, id);
-        }
-    
         public virtual int get_empname(string uname, string pswd, ObjectParameter name)
         {
             var unameParameter = uname != null ?
@@ -300,6 +287,32 @@ namespace JobPortalMVC.Models
                 new ObjectParameter("id", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<get_jobseeker_application_Result>("get_jobseeker_application", idParameter);
+        }
+    
+        public virtual int get_empid2(string uname, string pswd, ObjectParameter id)
+        {
+            var unameParameter = uname != null ?
+                new ObjectParameter("uname", uname) :
+                new ObjectParameter("uname", typeof(string));
+    
+            var pswdParameter = pswd != null ?
+                new ObjectParameter("pswd", pswd) :
+                new ObjectParameter("pswd", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("get_empid2", unameParameter, pswdParameter, id);
+        }
+    
+        public virtual int get_jobseeker_name(string uname, string pswd, ObjectParameter name)
+        {
+            var unameParameter = uname != null ?
+                new ObjectParameter("uname", uname) :
+                new ObjectParameter("uname", typeof(string));
+    
+            var pswdParameter = pswd != null ?
+                new ObjectParameter("pswd", pswd) :
+                new ObjectParameter("pswd", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("get_jobseeker_name", unameParameter, pswdParameter, name);
         }
     }
 }
