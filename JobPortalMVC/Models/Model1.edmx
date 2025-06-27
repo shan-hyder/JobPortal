@@ -33,7 +33,7 @@
           <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="phone" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="email" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="resume" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="resume" Type="varbinary(max)" Nullable="false" />
           <Property Name="employername" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="status" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
@@ -100,6 +100,10 @@
           <Parameter Name="pswd" Type="varchar" Mode="In" />
           <Parameter Name="name" Type="varchar" Mode="InOut" />
         </Function>
+        <Function Name="get_jemail" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="unam" Type="varchar" Mode="In" />
+          <Parameter Name="pswd" Type="varchar" Mode="In" />
+        </Function>
         <Function Name="get_jobs" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="get_jobseeker_application" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="id" Type="int" Mode="In" />
@@ -108,6 +112,10 @@
           <Parameter Name="uname" Type="varchar" Mode="In" />
           <Parameter Name="pswd" Type="varchar" Mode="In" />
           <Parameter Name="name" Type="varchar" Mode="InOut" />
+        </Function>
+        <Function Name="get_jphone" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="unam" Type="varchar" Mode="In" />
+          <Parameter Name="pswd" Type="varchar" Mode="In" />
         </Function>
         <Function Name="get_maxlogin" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="max_id" Type="int" Mode="InOut" />
@@ -123,8 +131,9 @@
           <Parameter Name="jobname" Type="varchar" Mode="In" />
           <Parameter Name="jobseekername" Type="varchar" Mode="In" />
           <Parameter Name="jobseekerphone" Type="varchar" Mode="In" />
-          <Parameter Name="resume" Type="varchar" Mode="In" />
+          <Parameter Name="resume" Type="varbinary(max)" Mode="In" />
           <Parameter Name="jobseekeremail" Type="varchar" Mode="In" />
+          <Parameter Name="employername" Type="varchar" Mode="In" />
           <Parameter Name="status" Type="varchar" Mode="In" />
         </Function>
         <Function Name="insert_login" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
@@ -201,7 +210,7 @@
           <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="resume" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="resume" Type="Binary" Nullable="false" />
           <Property Name="status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="employername" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
@@ -269,8 +278,9 @@
             <Parameter Name="jobname" Mode="In" Type="String" />
             <Parameter Name="jobseekername" Mode="In" Type="String" />
             <Parameter Name="jobseekerphone" Mode="In" Type="String" />
-            <Parameter Name="resume" Mode="In" Type="String" />
+            <Parameter Name="resume" Mode="In" Type="Binary" />
             <Parameter Name="jobseekeremail" Mode="In" Type="String" />
+            <Parameter Name="employername" Mode="In" Type="String" />
             <Parameter Name="status" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="insert_login">
@@ -325,6 +335,14 @@
             <Parameter Name="uname" Mode="In" Type="String" />
             <Parameter Name="pswd" Mode="In" Type="String" />
             <Parameter Name="name" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="get_jemail" ReturnType="Collection(String)">
+            <Parameter Name="unam" Mode="In" Type="String" />
+            <Parameter Name="pswd" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="get_jphone" ReturnType="Collection(String)">
+            <Parameter Name="unam" Mode="In" Type="String" />
+            <Parameter Name="pswd" Mode="In" Type="String" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="get_application_Result">
@@ -508,6 +526,8 @@
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="get_empid2" FunctionName="MVCJOBPORTALModel.Store.get_empid" />
           <FunctionImportMapping FunctionImportName="get_jobseeker_name" FunctionName="MVCJOBPORTALModel.Store.get_jobseeker_name" />
+          <FunctionImportMapping FunctionImportName="get_jemail" FunctionName="MVCJOBPORTALModel.Store.get_jemail" />
+          <FunctionImportMapping FunctionImportName="get_jphone" FunctionName="MVCJOBPORTALModel.Store.get_jphone" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

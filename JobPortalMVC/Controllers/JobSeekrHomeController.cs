@@ -33,9 +33,30 @@ namespace JobPortalMVC.Controllers
             int id = Convert.ToInt32(Session["jobsid"]);       
             ViewBag.name = Session["jobsname"].ToString();
             var result = entityobject.get_jobseeker_application(id);
+            if (TempData["message"] != null)
+                model.message = TempData["message"].ToString();
             return View(model);
+        }
+        public ActionResult Job_Apply(int JobID,string Employername,int Employerid,string Jobname,HttpPostedFileBase Resume)
+        {
+            int id = Convert.ToInt32(Session["jobsid"]);
+            string name=Session["jobsname"].ToString();
+            string phone =Session["jphone"].ToString();
+            string email = Session["jemail"].ToString();
+            byte[] resumeBytes = null;
+            if (Resume != null && Resume.ContentLength > 0)
+            {
+                using (var binaryReader = new System.IO.BinaryReader(Resume.InputStream))
+                {
+                    resumeBytes = binaryReader.ReadBytes(Resume.ContentLength);
+                }
+            }
+            entityobject.insert_jobapplication(Employerid, id, Jobname, name, phone, resumeBytes, email, Employername, "pending");
+            JobseekerHome modelobject = new JobseekerHome();
+            TempData["message"] = "Successfully applied!";
+            return RedirectToAction("JobseekerHome_Load");
 
-            
+
         }
         
         

@@ -251,6 +251,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="resume\" />
     <Folder Include="Views\ApplyJobs\" />
     <Folder Include="Views\Default\" />
   </ItemGroup>

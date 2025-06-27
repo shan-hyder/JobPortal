@@ -28,7 +28,7 @@
     <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="phone" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="email" Type="varchar" MaxLength="50" Nullable="false" />
-    <Property Name="resume" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="resume" Type="varbinary(max)" Nullable="false" />
     <Property Name="employername" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="status" Type="varchar" MaxLength="50" Nullable="false" />
   </EntityType>
@@ -95,6 +95,10 @@
     <Parameter Name="pswd" Type="varchar" Mode="In" />
     <Parameter Name="name" Type="varchar" Mode="InOut" />
   </Function>
+  <Function Name="get_jemail" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="unam" Type="varchar" Mode="In" />
+    <Parameter Name="pswd" Type="varchar" Mode="In" />
+  </Function>
   <Function Name="get_jobs" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="get_jobseeker_application" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="id" Type="int" Mode="In" />
@@ -103,6 +107,10 @@
     <Parameter Name="uname" Type="varchar" Mode="In" />
     <Parameter Name="pswd" Type="varchar" Mode="In" />
     <Parameter Name="name" Type="varchar" Mode="InOut" />
+  </Function>
+  <Function Name="get_jphone" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="unam" Type="varchar" Mode="In" />
+    <Parameter Name="pswd" Type="varchar" Mode="In" />
   </Function>
   <Function Name="get_maxlogin" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="max_id" Type="int" Mode="InOut" />
@@ -118,8 +126,9 @@
     <Parameter Name="jobname" Type="varchar" Mode="In" />
     <Parameter Name="jobseekername" Type="varchar" Mode="In" />
     <Parameter Name="jobseekerphone" Type="varchar" Mode="In" />
-    <Parameter Name="resume" Type="varchar" Mode="In" />
+    <Parameter Name="resume" Type="varbinary(max)" Mode="In" />
     <Parameter Name="jobseekeremail" Type="varchar" Mode="In" />
+    <Parameter Name="employername" Type="varchar" Mode="In" />
     <Parameter Name="status" Type="varchar" Mode="In" />
   </Function>
   <Function Name="insert_login" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">

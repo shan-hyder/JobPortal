@@ -41,6 +41,8 @@ namespace JobPortalMVC.Controllers
                         ObjectParameter empidParam = new ObjectParameter("id", typeof(int));
                         entityobject.get_empid2(modelobject.username, modelobject.password, empidParam);
 
+                        Session["jphone"] = entityobject.get_jphone(modelobject.username, modelobject.password).FirstOrDefault();
+                        Session["jemail"] = entityobject.get_jemail(modelobject.username, modelobject.password).FirstOrDefault();
                         int empid = empidParam.Value != null ? Convert.ToInt32(empidParam.Value) : 0;
                         if (empid != 0)
                         {

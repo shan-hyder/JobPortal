@@ -133,5 +133,7 @@
     </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="get_empid2" FunctionName="MVCJOBPORTALModel.Store.get_empid" />
     <FunctionImportMapping FunctionImportName="get_jobseeker_name" FunctionName="MVCJOBPORTALModel.Store.get_jobseeker_name" />
+    <FunctionImportMapping FunctionImportName="get_jemail" FunctionName="MVCJOBPORTALModel.Store.get_jemail" />
+    <FunctionImportMapping FunctionImportName="get_jphone" FunctionName="MVCJOBPORTALModel.Store.get_jphone" />
   </EntityContainerMapping>
 </Mapping>

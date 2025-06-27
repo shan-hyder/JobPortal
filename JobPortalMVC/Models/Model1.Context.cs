@@ -120,7 +120,7 @@ namespace JobPortalMVC.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("get_user", unameParameter, paswParameter, type);
         }
     
-        public virtual int insert_jobapplication(Nullable<int> employerid, Nullable<int> jobseekerid, string jobname, string jobseekername, string jobseekerphone, string resume, string jobseekeremail, string status)
+        public virtual int insert_jobapplication(Nullable<int> employerid, Nullable<int> jobseekerid, string jobname, string jobseekername, string jobseekerphone, byte[] resume, string jobseekeremail, string employername, string status)
         {
             var employeridParameter = employerid.HasValue ?
                 new ObjectParameter("employerid", employerid) :
@@ -144,17 +144,21 @@ namespace JobPortalMVC.Models
     
             var resumeParameter = resume != null ?
                 new ObjectParameter("resume", resume) :
-                new ObjectParameter("resume", typeof(string));
+                new ObjectParameter("resume", typeof(byte[]));
     
             var jobseekeremailParameter = jobseekeremail != null ?
                 new ObjectParameter("jobseekeremail", jobseekeremail) :
                 new ObjectParameter("jobseekeremail", typeof(string));
     
+            var employernameParameter = employername != null ?
+                new ObjectParameter("employername", employername) :
+                new ObjectParameter("employername", typeof(string));
+    
             var statusParameter = status != null ?
                 new ObjectParameter("status", status) :
                 new ObjectParameter("status", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("insert_jobapplication", employeridParameter, jobseekeridParameter, jobnameParameter, jobseekernameParameter, jobseekerphoneParameter, resumeParameter, jobseekeremailParameter, statusParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("insert_jobapplication", employeridParameter, jobseekeridParameter, jobnameParameter, jobseekernameParameter, jobseekerphoneParameter, resumeParameter, jobseekeremailParameter, employernameParameter, statusParameter);
         }
     
         public virtual int insert_login(Nullable<int> regid, string type, string username, string password)
@@ -313,6 +317,32 @@ namespace JobPortalMVC.Models
                 new ObjectParameter("pswd", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("get_jobseeker_name", unameParameter, pswdParameter, name);
+        }
+    
+        public virtual ObjectResult<string> get_jemail(string unam, string pswd)
+        {
+            var unamParameter = unam != null ?
+                new ObjectParameter("unam", unam) :
+                new ObjectParameter("unam", typeof(string));
+    
+            var pswdParameter = pswd != null ?
+                new ObjectParameter("pswd", pswd) :
+                new ObjectParameter("pswd", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("get_jemail", unamParameter, pswdParameter);
+        }
+    
+        public virtual ObjectResult<string> get_jphone(string unam, string pswd)
+        {
+            var unamParameter = unam != null ?
+                new ObjectParameter("unam", unam) :
+                new ObjectParameter("unam", typeof(string));
+    
+            var pswdParameter = pswd != null ?
+                new ObjectParameter("pswd", pswd) :
+                new ObjectParameter("pswd", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("get_jphone", unamParameter, pswdParameter);
         }
     }
 }
