@@ -15,6 +15,8 @@ namespace JobPortalMVC.Controllers
         public ActionResult JobseekerHome_Load(JobseekerHome modelobject)
         {
             var jobs = entityobject.get_jobs().ToList();
+            int jid = Convert.ToInt32(Session["jobsid"]);
+            var applystatus = entityobject.applicationid(jid).ToList();
             var model = new JobseekerHome
             {
                 alljobs = jobs.Select(x => new Jobs
@@ -28,8 +30,16 @@ namespace JobPortalMVC.Controllers
                     employername = x.employername,
                     postdate = x.postdate,
                     validuntil = x.validuntil
-                }).ToList()
-            };   
+                }).ToList(),
+                 appliedjobs = applystatus.Select(x => new AppliedJobs
+                 {
+                     jobseekerid = x.jobseekerid,
+                     jobname = x.jobname,
+                     employername = x.employername,
+                     status = x.status
+
+                 }).ToList()
+            };
             int id = Convert.ToInt32(Session["jobsid"]);       
             ViewBag.name = Session["jobsname"].ToString();
             var result = entityobject.get_jobseeker_application(id);
@@ -54,9 +64,42 @@ namespace JobPortalMVC.Controllers
             entityobject.insert_jobapplication(Employerid, id, Jobname, name, phone, resumeBytes, email, Employername, "pending");
             JobseekerHome modelobject = new JobseekerHome();
             TempData["message"] = "Successfully applied!";
+
             return RedirectToAction("JobseekerHome_Load");
+        }
+        public ActionResult SearchJob(string SearchTerm, JobseekerHome modelobject)
+        {
+            var jobs = entityobject.search_select(SearchTerm).ToList();
+            int jid = Convert.ToInt32(Session["jobsid"]);
+            var applystatus = entityobject.applicationid(jid).ToList();
+            var model = new JobseekerHome
+            {
+                alljobs = jobs.Select(x => new Jobs
+                {
+                    id = x.id,
+                    name = x.name,
+                    qualification = x.qualification,
+                    experience = x.experience,
+                    salary = x.salary,
+                    employerid = x.employerid,
+                    employername = x.employername,
+                    postdate = x.postdate,
+                    validuntil = x.validuntil
+                }).ToList(),
+                appliedjobs = applystatus.Select(x => new AppliedJobs
+                {
+                    jobseekerid = x.jobseekerid,
+                    jobname = x.jobname,
+                    employername = x.employername,
+                    status = x.status
+
+                }).ToList()
+            };
 
 
+            ViewBag.name = Session["jobsname"].ToString();
+
+            return View("JobseekerHome_Load", model);
         }
         
         

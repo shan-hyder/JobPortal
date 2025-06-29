@@ -82,6 +82,9 @@
           <Parameter Name="postdate" Type="date" Mode="In" />
           <Parameter Name="validuntil" Type="date" Mode="In" />
         </Function>
+        <Function Name="applicationid" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="jsid" Type="int" Mode="In" />
+        </Function>
         <Function Name="confirm_job" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="jobseekerid" Type="int" Mode="In" />
           <Parameter Name="status" Type="varchar" Mode="In" />
@@ -160,6 +163,9 @@
           <Parameter Name="phone" Type="varchar" Mode="In" />
           <Parameter Name="email" Type="varchar" Mode="In" />
         </Function>
+        <Function Name="search_select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="searchterm" Type="varchar" Mode="In" />
+        </Function>
         <Function Name="updatestatus" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="empid" Type="int" Mode="In" />
           <Parameter Name="jobsid" Type="int" Mode="In" />
@@ -210,7 +216,7 @@
           <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="resume" Type="Binary" Nullable="false" />
+          <Property Name="resume" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
           <Property Name="status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="employername" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
@@ -344,6 +350,12 @@
             <Parameter Name="unam" Mode="In" Type="String" />
             <Parameter Name="pswd" Mode="In" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="applicationid" ReturnType="Collection(MVCJOBPORTALModel.applicationid_Result)">
+          <Parameter Name="jsid" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="search_select" ReturnType="Collection(MVCJOBPORTALModel.search_select_Result)">
+          <Parameter Name="searchterm" Mode="In" Type="String" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="get_application_Result">
           <Property Type="Int32" Name="id" Nullable="false" />
@@ -387,6 +399,29 @@
           <Property Type="String" Name="email" Nullable="false" MaxLength="50" />
           <Property Type="String" Name="resume" Nullable="false" MaxLength="50" />
           <Property Type="String" Name="status" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="applicationid_Result">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="Int32" Name="employerid" Nullable="false" />
+          <Property Type="Int32" Name="jobseekerid" Nullable="false" />
+          <Property Type="String" Name="jobname" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="name" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="phone" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="email" Nullable="false" MaxLength="50" />
+          <Property Type="Binary" Name="resume" Nullable="false" />
+          <Property Type="String" Name="employername" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="status" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="search_select_Result">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="name" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="qualification" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="experience" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="salary" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="employerid" Nullable="false" />
+          <Property Type="String" Name="employername" Nullable="false" MaxLength="50" />
+          <Property Type="DateTime" Name="postdate" Nullable="false" />
+          <Property Type="DateTime" Name="validuntil" Nullable="false" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -528,6 +563,37 @@
           <FunctionImportMapping FunctionImportName="get_jobseeker_name" FunctionName="MVCJOBPORTALModel.Store.get_jobseeker_name" />
           <FunctionImportMapping FunctionImportName="get_jemail" FunctionName="MVCJOBPORTALModel.Store.get_jemail" />
           <FunctionImportMapping FunctionImportName="get_jphone" FunctionName="MVCJOBPORTALModel.Store.get_jphone" />
+          <FunctionImportMapping FunctionImportName="applicationid" FunctionName="MVCJOBPORTALModel.Store.applicationid">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MVCJOBPORTALModel.applicationid_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="employerid" ColumnName="employerid" />
+                <ScalarProperty Name="jobseekerid" ColumnName="jobseekerid" />
+                <ScalarProperty Name="jobname" ColumnName="jobname" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="resume" ColumnName="resume" />
+                <ScalarProperty Name="employername" ColumnName="employername" />
+                <ScalarProperty Name="status" ColumnName="status" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="search_select" FunctionName="MVCJOBPORTALModel.Store.search_select">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MVCJOBPORTALModel.search_select_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="qualification" ColumnName="qualification" />
+                <ScalarProperty Name="experience" ColumnName="experience" />
+                <ScalarProperty Name="salary" ColumnName="salary" />
+                <ScalarProperty Name="employerid" ColumnName="employerid" />
+                <ScalarProperty Name="employername" ColumnName="employername" />
+                <ScalarProperty Name="postdate" ColumnName="postdate" />
+                <ScalarProperty Name="validuntil" ColumnName="validuntil" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

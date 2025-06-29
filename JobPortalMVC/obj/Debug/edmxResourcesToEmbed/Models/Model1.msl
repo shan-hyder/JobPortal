@@ -135,5 +135,36 @@
     <FunctionImportMapping FunctionImportName="get_jobseeker_name" FunctionName="MVCJOBPORTALModel.Store.get_jobseeker_name" />
     <FunctionImportMapping FunctionImportName="get_jemail" FunctionName="MVCJOBPORTALModel.Store.get_jemail" />
     <FunctionImportMapping FunctionImportName="get_jphone" FunctionName="MVCJOBPORTALModel.Store.get_jphone" />
+    <FunctionImportMapping FunctionImportName="applicationid" FunctionName="MVCJOBPORTALModel.Store.applicationid">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="MVCJOBPORTALModel.applicationid_Result">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="employerid" ColumnName="employerid" />
+          <ScalarProperty Name="jobseekerid" ColumnName="jobseekerid" />
+          <ScalarProperty Name="jobname" ColumnName="jobname" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="phone" ColumnName="phone" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="resume" ColumnName="resume" />
+          <ScalarProperty Name="employername" ColumnName="employername" />
+          <ScalarProperty Name="status" ColumnName="status" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="search_select" FunctionName="MVCJOBPORTALModel.Store.search_select">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="MVCJOBPORTALModel.search_select_Result">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="qualification" ColumnName="qualification" />
+          <ScalarProperty Name="experience" ColumnName="experience" />
+          <ScalarProperty Name="salary" ColumnName="salary" />
+          <ScalarProperty Name="employerid" ColumnName="employerid" />
+          <ScalarProperty Name="employername" ColumnName="employername" />
+          <ScalarProperty Name="postdate" ColumnName="postdate" />
+          <ScalarProperty Name="validuntil" ColumnName="validuntil" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
   </EntityContainerMapping>
 </Mapping>

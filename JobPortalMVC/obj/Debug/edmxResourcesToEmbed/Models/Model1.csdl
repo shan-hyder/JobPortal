@@ -28,7 +28,7 @@
     <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="resume" Type="Binary" Nullable="false" />
+    <Property Name="resume" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
     <Property Name="status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="employername" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
   </EntityType>
@@ -162,6 +162,12 @@
       <Parameter Name="unam" Mode="In" Type="String" />
       <Parameter Name="pswd" Mode="In" Type="String" />
     </FunctionImport>
+    <FunctionImport Name="applicationid" ReturnType="Collection(MVCJOBPORTALModel.applicationid_Result)">
+      <Parameter Name="jsid" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="search_select" ReturnType="Collection(MVCJOBPORTALModel.search_select_Result)">
+      <Parameter Name="searchterm" Mode="In" Type="String" />
+    </FunctionImport>
   </EntityContainer>
   <ComplexType Name="get_application_Result">
     <Property Type="Int32" Name="id" Nullable="false" />
@@ -205,5 +211,28 @@
     <Property Type="String" Name="email" Nullable="false" MaxLength="50" />
     <Property Type="String" Name="resume" Nullable="false" MaxLength="50" />
     <Property Type="String" Name="status" Nullable="false" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="applicationid_Result">
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="Int32" Name="employerid" Nullable="false" />
+    <Property Type="Int32" Name="jobseekerid" Nullable="false" />
+    <Property Type="String" Name="jobname" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="name" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="phone" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="email" Nullable="false" MaxLength="50" />
+    <Property Type="Binary" Name="resume" Nullable="false" />
+    <Property Type="String" Name="employername" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="status" Nullable="false" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="search_select_Result">
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="String" Name="name" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="qualification" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="experience" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="salary" Nullable="false" MaxLength="50" />
+    <Property Type="Int32" Name="employerid" Nullable="false" />
+    <Property Type="String" Name="employername" Nullable="false" MaxLength="50" />
+    <Property Type="DateTime" Name="postdate" Nullable="false" />
+    <Property Type="DateTime" Name="validuntil" Nullable="false" />
   </ComplexType>
 </Schema>

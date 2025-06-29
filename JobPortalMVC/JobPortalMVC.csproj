@@ -128,7 +128,6 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\ApplyJobsController.cs" />
     <Compile Include="Controllers\EmployerHomeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\JobSeekrHomeController.cs" />
@@ -138,6 +137,9 @@
     <Compile Include="Controllers\Register_JobSeekerController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\applicationid_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Applystatu.cs">
       <DependentUpon>Model1.tt</DependentUpon>
@@ -184,6 +186,9 @@
       <DependentUpon>Model1.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\PostJobModel.cs" />
+    <Compile Include="Models\search_select_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\UserLogin1.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>

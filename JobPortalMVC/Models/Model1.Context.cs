@@ -344,5 +344,23 @@ namespace JobPortalMVC.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("get_jphone", unamParameter, pswdParameter);
         }
+    
+        public virtual ObjectResult<applicationid_Result> applicationid(Nullable<int> jsid)
+        {
+            var jsidParameter = jsid.HasValue ?
+                new ObjectParameter("jsid", jsid) :
+                new ObjectParameter("jsid", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<applicationid_Result>("applicationid", jsidParameter);
+        }
+    
+        public virtual ObjectResult<search_select_Result> search_select(string searchterm)
+        {
+            var searchtermParameter = searchterm != null ?
+                new ObjectParameter("searchterm", searchterm) :
+                new ObjectParameter("searchterm", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<search_select_Result>("search_select", searchtermParameter);
+        }
     }
 }
