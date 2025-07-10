@@ -40,5 +40,6 @@ namespace JobPortalMVC.Models
         [Required(ErrorMessage = "Enter valid password")]
         public string password { get; set; }
         public string message { get; set; }
+      
     }
 }

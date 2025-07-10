@@ -28,7 +28,7 @@
     <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="phone" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="email" Type="varchar" MaxLength="50" Nullable="false" />
-    <Property Name="resume" Type="varbinary(max)" Nullable="false" />
+    <Property Name="resume" Type="varchar" MaxLength="450" Nullable="false" />
     <Property Name="employername" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="status" Type="varchar" MaxLength="50" Nullable="false" />
   </EntityType>
@@ -129,7 +129,7 @@
     <Parameter Name="jobname" Type="varchar" Mode="In" />
     <Parameter Name="jobseekername" Type="varchar" Mode="In" />
     <Parameter Name="jobseekerphone" Type="varchar" Mode="In" />
-    <Parameter Name="resume" Type="varbinary(max)" Mode="In" />
+    <Parameter Name="resume" Type="varchar" Mode="In" />
     <Parameter Name="jobseekeremail" Type="varchar" Mode="In" />
     <Parameter Name="employername" Type="varchar" Mode="In" />
     <Parameter Name="status" Type="varchar" Mode="In" />

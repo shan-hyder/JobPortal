@@ -4,13 +4,13 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="da809d13fd0244a688187e86d64ec2b3" Name="Diagram1">
+      <Diagram DiagramId="928c97a681074ac79dcf514430e8c001" Name="Diagram1">
         <EntityTypeShape EntityType="MVCJOBPORTALModel.Applystatu" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="MVCJOBPORTALModel.Employer" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="MVCJOBPORTALModel.jobapplication" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="MVCJOBPORTALModel.Job" Width="1.5" PointX="2.75" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="MVCJOBPORTALModel.Jobseeker" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="MVCJOBPORTALModel.UserLogin1" Width="1.5" PointX="4.5" PointY="3.75" />
+        <EntityTypeShape EntityType="MVCJOBPORTALModel.UserLogin1" Width="1.5" PointX="4.75" PointY="3.75" IsExpanded="true" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

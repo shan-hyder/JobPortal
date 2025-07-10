@@ -9,7 +9,7 @@ namespace JobPortalMVC.Controllers
 {
     public class EmployerHomeController : Controller
     {
-        MVCJOBPORTALEntities1 entityobject = new MVCJOBPORTALEntities1();
+        MVCJOBPORTALEntities3 entityobject = new MVCJOBPORTALEntities3();
         // GET: EmployerHome
         public ActionResult Employer_Load()
         {
@@ -29,15 +29,8 @@ namespace JobPortalMVC.Controllers
                 email = r.email,
                 status = r.status,
                 resume = r.resume
-
-
-
             }).ToList();
             modelobject.Applicantretreive = applications;
-
-
-
-
             return View(modelobject);
         }
 

@@ -3,8 +3,13 @@
     ViewBag.Title = "JobseekerHome_Load";
 }
 
-<h1 class="text-center text-danger">Welcome @ViewBag.name</h1>
-<h1 class="text-center text-warning"style="border-bottom-color:black">Application Status</h1>
+<div>
+    <h1 class="text-center text-danger">Welcome @ViewBag.name</h1>
+</div>
+<div>
+    <h1 class="text-center text-warning" style="border-bottom-color:black">Application Status</h1>
+</div>
+
 
 @using (Html.BeginForm("JobseekerHome_Load", "JobSeekrHome", FormMethod.Get))
 

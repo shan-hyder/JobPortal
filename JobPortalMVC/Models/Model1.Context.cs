@@ -15,10 +15,10 @@ namespace JobPortalMVC.Models
     using System.Data.Entity.Core.Objects;
     using System.Linq;
     
-    public partial class MVCJOBPORTALEntities1 : DbContext
+    public partial class MVCJOBPORTALEntities3 : DbContext
     {
-        public MVCJOBPORTALEntities1()
-            : base("name=MVCJOBPORTALEntities1")
+        public MVCJOBPORTALEntities3()
+            : base("name=MVCJOBPORTALEntities3")
         {
         }
     
@@ -71,6 +71,15 @@ namespace JobPortalMVC.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("add_job", nameParameter, qualParameter, experienceParameter, salaryParameter, employeridParameter, employernameParameter, postdateParameter, validuntilParameter);
         }
     
+        public virtual ObjectResult<applicationid_Result> applicationid(Nullable<int> jsid)
+        {
+            var jsidParameter = jsid.HasValue ?
+                new ObjectParameter("jsid", jsid) :
+                new ObjectParameter("jsid", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<applicationid_Result>("applicationid", jsidParameter);
+        }
+    
         public virtual int confirm_job(Nullable<int> jobseekerid, string status, string jobname)
         {
             var jobseekeridParameter = jobseekerid.HasValue ?
@@ -97,9 +106,83 @@ namespace JobPortalMVC.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<get_application_Result>("get_application", empidParameter);
         }
     
+        public virtual int get_empid(string uname, string pswd, ObjectParameter id)
+        {
+            var unameParameter = uname != null ?
+                new ObjectParameter("uname", uname) :
+                new ObjectParameter("uname", typeof(string));
+    
+            var pswdParameter = pswd != null ?
+                new ObjectParameter("pswd", pswd) :
+                new ObjectParameter("pswd", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("get_empid", unameParameter, pswdParameter, id);
+        }
+    
+        public virtual int get_empname(string uname, string pswd, ObjectParameter name)
+        {
+            var unameParameter = uname != null ?
+                new ObjectParameter("uname", uname) :
+                new ObjectParameter("uname", typeof(string));
+    
+            var pswdParameter = pswd != null ?
+                new ObjectParameter("pswd", pswd) :
+                new ObjectParameter("pswd", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("get_empname", unameParameter, pswdParameter, name);
+        }
+    
+        public virtual ObjectResult<string> get_jemail(string unam, string pswd)
+        {
+            var unamParameter = unam != null ?
+                new ObjectParameter("unam", unam) :
+                new ObjectParameter("unam", typeof(string));
+    
+            var pswdParameter = pswd != null ?
+                new ObjectParameter("pswd", pswd) :
+                new ObjectParameter("pswd", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("get_jemail", unamParameter, pswdParameter);
+        }
+    
         public virtual ObjectResult<get_jobs_Result> get_jobs()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<get_jobs_Result>("get_jobs");
+        }
+    
+        public virtual ObjectResult<get_jobseeker_application_Result> get_jobseeker_application(Nullable<int> id)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("id", id) :
+                new ObjectParameter("id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<get_jobseeker_application_Result>("get_jobseeker_application", idParameter);
+        }
+    
+        public virtual int get_jobseeker_name(string uname, string pswd, ObjectParameter name)
+        {
+            var unameParameter = uname != null ?
+                new ObjectParameter("uname", uname) :
+                new ObjectParameter("uname", typeof(string));
+    
+            var pswdParameter = pswd != null ?
+                new ObjectParameter("pswd", pswd) :
+                new ObjectParameter("pswd", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("get_jobseeker_name", unameParameter, pswdParameter, name);
+        }
+    
+        public virtual ObjectResult<string> get_jphone(string unam, string pswd)
+        {
+            var unamParameter = unam != null ?
+                new ObjectParameter("unam", unam) :
+                new ObjectParameter("unam", typeof(string));
+    
+            var pswdParameter = pswd != null ?
+                new ObjectParameter("pswd", pswd) :
+                new ObjectParameter("pswd", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("get_jphone", unamParameter, pswdParameter);
         }
     
         public virtual int get_maxlogin(ObjectParameter max_id)
@@ -120,7 +203,7 @@ namespace JobPortalMVC.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("get_user", unameParameter, paswParameter, type);
         }
     
-        public virtual int insert_jobapplication(Nullable<int> employerid, Nullable<int> jobseekerid, string jobname, string jobseekername, string jobseekerphone, byte[] resume, string jobseekeremail, string employername, string status)
+        public virtual int insert_jobapplication(Nullable<int> employerid, Nullable<int> jobseekerid, string jobname, string jobseekername, string jobseekerphone, string resume, string jobseekeremail, string employername, string status)
         {
             var employeridParameter = employerid.HasValue ?
                 new ObjectParameter("employerid", employerid) :
@@ -144,7 +227,7 @@ namespace JobPortalMVC.Models
     
             var resumeParameter = resume != null ?
                 new ObjectParameter("resume", resume) :
-                new ObjectParameter("resume", typeof(byte[]));
+                new ObjectParameter("resume", typeof(string));
     
             var jobseekeremailParameter = jobseekeremail != null ?
                 new ObjectParameter("jobseekeremail", jobseekeremail) :
@@ -241,30 +324,13 @@ namespace JobPortalMVC.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("register_jobseeker", idParameter, nameParameter, ageParameter, qualParameter, phoneParameter, emailParameter);
         }
     
-        public virtual ObjectResult<Nullable<int>> USERID(string uname, string pasw, ObjectParameter type)
+        public virtual ObjectResult<search_select_Result> search_select(string searchterm)
         {
-            var unameParameter = uname != null ?
-                new ObjectParameter("uname", uname) :
-                new ObjectParameter("uname", typeof(string));
+            var searchtermParameter = searchterm != null ?
+                new ObjectParameter("searchterm", searchterm) :
+                new ObjectParameter("searchterm", typeof(string));
     
-            var paswParameter = pasw != null ?
-                new ObjectParameter("pasw", pasw) :
-                new ObjectParameter("pasw", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("USERID", unameParameter, paswParameter, type);
-        }
-    
-        public virtual int get_empname(string uname, string pswd, ObjectParameter name)
-        {
-            var unameParameter = uname != null ?
-                new ObjectParameter("uname", uname) :
-                new ObjectParameter("uname", typeof(string));
-    
-            var pswdParameter = pswd != null ?
-                new ObjectParameter("pswd", pswd) :
-                new ObjectParameter("pswd", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("get_empname", unameParameter, pswdParameter, name);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<search_select_Result>("search_select", searchtermParameter);
         }
     
         public virtual int updatestatus(Nullable<int> empid, Nullable<int> jobsid, string status)
@@ -284,83 +350,17 @@ namespace JobPortalMVC.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("updatestatus", empidParameter, jobsidParameter, statusParameter);
         }
     
-        public virtual ObjectResult<get_jobseeker_application_Result> get_jobseeker_application(Nullable<int> id)
-        {
-            var idParameter = id.HasValue ?
-                new ObjectParameter("id", id) :
-                new ObjectParameter("id", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<get_jobseeker_application_Result>("get_jobseeker_application", idParameter);
-        }
-    
-        public virtual int get_empid2(string uname, string pswd, ObjectParameter id)
+        public virtual ObjectResult<Nullable<int>> USERID(string uname, string pasw, ObjectParameter type)
         {
             var unameParameter = uname != null ?
                 new ObjectParameter("uname", uname) :
                 new ObjectParameter("uname", typeof(string));
     
-            var pswdParameter = pswd != null ?
-                new ObjectParameter("pswd", pswd) :
-                new ObjectParameter("pswd", typeof(string));
+            var paswParameter = pasw != null ?
+                new ObjectParameter("pasw", pasw) :
+                new ObjectParameter("pasw", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("get_empid2", unameParameter, pswdParameter, id);
-        }
-    
-        public virtual int get_jobseeker_name(string uname, string pswd, ObjectParameter name)
-        {
-            var unameParameter = uname != null ?
-                new ObjectParameter("uname", uname) :
-                new ObjectParameter("uname", typeof(string));
-    
-            var pswdParameter = pswd != null ?
-                new ObjectParameter("pswd", pswd) :
-                new ObjectParameter("pswd", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("get_jobseeker_name", unameParameter, pswdParameter, name);
-        }
-    
-        public virtual ObjectResult<string> get_jemail(string unam, string pswd)
-        {
-            var unamParameter = unam != null ?
-                new ObjectParameter("unam", unam) :
-                new ObjectParameter("unam", typeof(string));
-    
-            var pswdParameter = pswd != null ?
-                new ObjectParameter("pswd", pswd) :
-                new ObjectParameter("pswd", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("get_jemail", unamParameter, pswdParameter);
-        }
-    
-        public virtual ObjectResult<string> get_jphone(string unam, string pswd)
-        {
-            var unamParameter = unam != null ?
-                new ObjectParameter("unam", unam) :
-                new ObjectParameter("unam", typeof(string));
-    
-            var pswdParameter = pswd != null ?
-                new ObjectParameter("pswd", pswd) :
-                new ObjectParameter("pswd", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("get_jphone", unamParameter, pswdParameter);
-        }
-    
-        public virtual ObjectResult<applicationid_Result> applicationid(Nullable<int> jsid)
-        {
-            var jsidParameter = jsid.HasValue ?
-                new ObjectParameter("jsid", jsid) :
-                new ObjectParameter("jsid", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<applicationid_Result>("applicationid", jsidParameter);
-        }
-    
-        public virtual ObjectResult<search_select_Result> search_select(string searchterm)
-        {
-            var searchtermParameter = searchterm != null ?
-                new ObjectParameter("searchterm", searchterm) :
-                new ObjectParameter("searchterm", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<search_select_Result>("search_select", searchtermParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("USERID", unameParameter, paswParameter, type);
         }
     }
 }

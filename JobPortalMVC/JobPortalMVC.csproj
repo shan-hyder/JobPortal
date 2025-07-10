@@ -135,6 +135,7 @@
     <Compile Include="Controllers\PostJobController.cs" />
     <Compile Include="Controllers\Register_EmployerController.cs" />
     <Compile Include="Controllers\Register_JobSeekerController.cs" />
+    <Compile Include="Controllers\ResumeHandleController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -259,6 +260,7 @@
     <Folder Include="resume\" />
     <Folder Include="Views\ApplyJobs\" />
     <Folder Include="Views\Default\" />
+    <Folder Include="Views\ResumeHandle\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

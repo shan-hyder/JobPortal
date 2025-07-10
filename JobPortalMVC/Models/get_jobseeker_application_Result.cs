@@ -21,6 +21,7 @@ namespace JobPortalMVC.Models
         public string phone { get; set; }
         public string email { get; set; }
         public string resume { get; set; }
+        public string employername { get; set; }
         public string status { get; set; }
     }
 }

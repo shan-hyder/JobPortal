@@ -33,7 +33,7 @@
           <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="phone" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="email" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="resume" Type="varbinary(max)" Nullable="false" />
+          <Property Name="resume" Type="varchar" MaxLength="450" Nullable="false" />
           <Property Name="employername" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="status" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
@@ -134,7 +134,7 @@
           <Parameter Name="jobname" Type="varchar" Mode="In" />
           <Parameter Name="jobseekername" Type="varchar" Mode="In" />
           <Parameter Name="jobseekerphone" Type="varchar" Mode="In" />
-          <Parameter Name="resume" Type="varbinary(max)" Mode="In" />
+          <Parameter Name="resume" Type="varchar" Mode="In" />
           <Parameter Name="jobseekeremail" Type="varchar" Mode="In" />
           <Parameter Name="employername" Type="varchar" Mode="In" />
           <Parameter Name="status" Type="varchar" Mode="In" />
@@ -216,9 +216,9 @@
           <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="resume" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+          <Property Name="resume" Type="String" MaxLength="450" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="employername" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="employername" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Job">
           <Key>
@@ -245,12 +245,23 @@
           <Property Name="phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
         </EntityType>
-        <EntityContainer Name="MVCJOBPORTALEntities1" annotation:LazyLoadingEnabled="true">
+        <EntityType Name="UserLogin1">
+          <Key>
+            <PropertyRef Name="Log_id" />
+          </Key>
+          <Property Name="Log_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Reg_id" Type="Int32" Nullable="false" />
+          <Property Name="user_type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="MVCJOBPORTALEntities3" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Applystatus" EntityType="Self.Applystatu" />
           <EntitySet Name="Employers" EntityType="Self.Employer" />
           <EntitySet Name="jobapplications" EntityType="Self.jobapplication" />
           <EntitySet Name="Jobs" EntityType="Self.Job" />
           <EntitySet Name="Jobseekers" EntityType="Self.Jobseeker" />
+          <EntitySet Name="UserLogin1" EntityType="Self.UserLogin1" />
           <FunctionImport Name="add_job">
             <Parameter Name="name" Mode="In" Type="String" />
             <Parameter Name="qual" Mode="In" Type="String" />
@@ -261,6 +272,9 @@
             <Parameter Name="postdate" Mode="In" Type="DateTime" />
             <Parameter Name="validuntil" Mode="In" Type="DateTime" />
           </FunctionImport>
+          <FunctionImport Name="applicationid" ReturnType="Collection(MVCJOBPORTALModel.applicationid_Result)">
+          <Parameter Name="jsid" Mode="In" Type="Int32" />
+          </FunctionImport>
           <FunctionImport Name="confirm_job">
             <Parameter Name="jobseekerid" Mode="In" Type="Int32" />
             <Parameter Name="status" Mode="In" Type="String" />
@@ -269,7 +283,33 @@
           <FunctionImport Name="get_application" ReturnType="Collection(MVCJOBPORTALModel.get_application_Result)">
           <Parameter Name="empid" Mode="In" Type="Int32" />
           </FunctionImport>
+          <FunctionImport Name="get_empid">
+            <Parameter Name="uname" Mode="In" Type="String" />
+            <Parameter Name="pswd" Mode="In" Type="String" />
+            <Parameter Name="id" Mode="InOut" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="get_empname">
+            <Parameter Name="uname" Mode="In" Type="String" />
+            <Parameter Name="pswd" Mode="In" Type="String" />
+            <Parameter Name="name" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="get_jemail" ReturnType="Collection(String)">
+            <Parameter Name="unam" Mode="In" Type="String" />
+            <Parameter Name="pswd" Mode="In" Type="String" />
+          </FunctionImport>
           <FunctionImport Name="get_jobs" ReturnType="Collection(MVCJOBPORTALModel.get_jobs_Result)" />
+          <FunctionImport Name="get_jobseeker_application" ReturnType="Collection(MVCJOBPORTALModel.get_jobseeker_application_Result)">
+          <Parameter Name="id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="get_jobseeker_name">
+            <Parameter Name="uname" Mode="In" Type="String" />
+            <Parameter Name="pswd" Mode="In" Type="String" />
+            <Parameter Name="name" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="get_jphone" ReturnType="Collection(String)">
+            <Parameter Name="unam" Mode="In" Type="String" />
+            <Parameter Name="pswd" Mode="In" Type="String" />
+          </FunctionImport>
           <FunctionImport Name="get_maxlogin">
           <Parameter Name="max_id" Mode="InOut" Type="Int32" />
           </FunctionImport>
@@ -284,7 +324,7 @@
             <Parameter Name="jobname" Mode="In" Type="String" />
             <Parameter Name="jobseekername" Mode="In" Type="String" />
             <Parameter Name="jobseekerphone" Mode="In" Type="String" />
-            <Parameter Name="resume" Mode="In" Type="Binary" />
+            <Parameter Name="resume" Mode="In" Type="String" />
             <Parameter Name="jobseekeremail" Mode="In" Type="String" />
             <Parameter Name="employername" Mode="In" Type="String" />
             <Parameter Name="status" Mode="In" Type="String" />
@@ -313,50 +353,32 @@
             <Parameter Name="phone" Mode="In" Type="String" />
             <Parameter Name="email" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="USERID" ReturnType="Collection(Int32)">
-            <Parameter Name="uname" Mode="In" Type="String" />
-            <Parameter Name="pasw" Mode="In" Type="String" />
-            <Parameter Name="type" Mode="InOut" Type="String" />
+          <FunctionImport Name="search_select" ReturnType="Collection(MVCJOBPORTALModel.search_select_Result)">
+          <Parameter Name="searchterm" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="get_empname">
-            <Parameter Name="uname" Mode="In" Type="String" />
-            <Parameter Name="pswd" Mode="In" Type="String" />
-            <Parameter Name="name" Mode="InOut" Type="String" />
-          </FunctionImport>
-          <EntitySet Name="UserLogin1" EntityType="MVCJOBPORTALModel.UserLogin1" />
           <FunctionImport Name="updatestatus">
             <Parameter Name="empid" Mode="In" Type="Int32" />
             <Parameter Name="jobsid" Mode="In" Type="Int32" />
             <Parameter Name="status" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="get_jobseeker_application" ReturnType="Collection(MVCJOBPORTALModel.get_jobseeker_application_Result)">
-          <Parameter Name="id" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="get_empid2">
+          <FunctionImport Name="USERID" ReturnType="Collection(Int32)">
             <Parameter Name="uname" Mode="In" Type="String" />
-            <Parameter Name="pswd" Mode="In" Type="String" />
-            <Parameter Name="id" Mode="InOut" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="get_jobseeker_name">
-            <Parameter Name="uname" Mode="In" Type="String" />
-            <Parameter Name="pswd" Mode="In" Type="String" />
-            <Parameter Name="name" Mode="InOut" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="get_jemail" ReturnType="Collection(String)">
-            <Parameter Name="unam" Mode="In" Type="String" />
-            <Parameter Name="pswd" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="get_jphone" ReturnType="Collection(String)">
-            <Parameter Name="unam" Mode="In" Type="String" />
-            <Parameter Name="pswd" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="applicationid" ReturnType="Collection(MVCJOBPORTALModel.applicationid_Result)">
-          <Parameter Name="jsid" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="search_select" ReturnType="Collection(MVCJOBPORTALModel.search_select_Result)">
-          <Parameter Name="searchterm" Mode="In" Type="String" />
+            <Parameter Name="pasw" Mode="In" Type="String" />
+            <Parameter Name="type" Mode="InOut" Type="String" />
           </FunctionImport>
         </EntityContainer>
+        <ComplexType Name="applicationid_Result">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="Int32" Name="employerid" Nullable="false" />
+          <Property Type="Int32" Name="jobseekerid" Nullable="false" />
+          <Property Type="String" Name="jobname" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="name" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="phone" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="email" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="resume" Nullable="false" MaxLength="450" />
+          <Property Type="String" Name="employername" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="status" Nullable="false" MaxLength="50" />
+        </ComplexType>
         <ComplexType Name="get_application_Result">
           <Property Type="Int32" Name="id" Nullable="false" />
           <Property Type="Int32" Name="employerid" Nullable="false" />
@@ -365,7 +387,8 @@
           <Property Type="String" Name="name" Nullable="false" MaxLength="50" />
           <Property Type="String" Name="phone" Nullable="false" MaxLength="50" />
           <Property Type="String" Name="email" Nullable="false" MaxLength="50" />
-          <Property Type="String" Name="resume" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="resume" Nullable="false" MaxLength="450" />
+          <Property Type="String" Name="employername" Nullable="false" MaxLength="50" />
           <Property Type="String" Name="status" Nullable="false" MaxLength="50" />
         </ComplexType>
         <ComplexType Name="get_jobs_Result">
@@ -379,16 +402,6 @@
           <Property Type="DateTime" Name="postdate" Nullable="false" />
           <Property Type="DateTime" Name="validuntil" Nullable="false" />
         </ComplexType>
-        <EntityType Name="UserLogin1">
-          <Key>
-            <PropertyRef Name="Log_id" />
-          </Key>
-          <Property Name="Log_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Reg_id" Type="Int32" Nullable="false" />
-          <Property Name="user_type" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="username" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-        </EntityType>
         <ComplexType Name="get_jobseeker_application_Result">
           <Property Type="Int32" Name="id" Nullable="false" />
           <Property Type="Int32" Name="employerid" Nullable="false" />
@@ -397,18 +410,7 @@
           <Property Type="String" Name="name" Nullable="false" MaxLength="50" />
           <Property Type="String" Name="phone" Nullable="false" MaxLength="50" />
           <Property Type="String" Name="email" Nullable="false" MaxLength="50" />
-          <Property Type="String" Name="resume" Nullable="false" MaxLength="50" />
-          <Property Type="String" Name="status" Nullable="false" MaxLength="50" />
-        </ComplexType>
-        <ComplexType Name="applicationid_Result">
-          <Property Type="Int32" Name="id" Nullable="false" />
-          <Property Type="Int32" Name="employerid" Nullable="false" />
-          <Property Type="Int32" Name="jobseekerid" Nullable="false" />
-          <Property Type="String" Name="jobname" Nullable="false" MaxLength="50" />
-          <Property Type="String" Name="name" Nullable="false" MaxLength="50" />
-          <Property Type="String" Name="phone" Nullable="false" MaxLength="50" />
-          <Property Type="String" Name="email" Nullable="false" MaxLength="50" />
-          <Property Type="Binary" Name="resume" Nullable="false" />
+          <Property Type="String" Name="resume" Nullable="false" MaxLength="450" />
           <Property Type="String" Name="employername" Nullable="false" MaxLength="50" />
           <Property Type="String" Name="status" Nullable="false" MaxLength="50" />
         </ComplexType>
@@ -428,7 +430,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="MVCJOBPORTALModelStoreContainer" CdmEntityContainer="MVCJOBPORTALEntities1">
+        <EntityContainerMapping StorageEntityContainer="MVCJOBPORTALModelStoreContainer" CdmEntityContainer="MVCJOBPORTALEntities3">
           <EntitySetMapping Name="Applystatus">
             <EntityTypeMapping TypeName="MVCJOBPORTALModel.Applystatu">
               <MappingFragment StoreEntitySet="Applystatus">
@@ -451,7 +453,6 @@
           <EntitySetMapping Name="jobapplications">
             <EntityTypeMapping TypeName="MVCJOBPORTALModel.jobapplication">
               <MappingFragment StoreEntitySet="jobapplication">
-                <ScalarProperty Name="employername" ColumnName="employername" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="employerid" ColumnName="employerid" />
                 <ScalarProperty Name="jobseekerid" ColumnName="jobseekerid" />
@@ -460,6 +461,7 @@
                 <ScalarProperty Name="phone" ColumnName="phone" />
                 <ScalarProperty Name="email" ColumnName="email" />
                 <ScalarProperty Name="resume" ColumnName="resume" />
+                <ScalarProperty Name="employername" ColumnName="employername" />
                 <ScalarProperty Name="status" ColumnName="status" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -491,78 +493,18 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="add_job" FunctionName="MVCJOBPORTALModel.Store.add_job" />
-          <FunctionImportMapping FunctionImportName="confirm_job" FunctionName="MVCJOBPORTALModel.Store.confirm_job" />
-          <FunctionImportMapping FunctionImportName="get_application" FunctionName="MVCJOBPORTALModel.Store.get_application">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="MVCJOBPORTALModel.get_application_Result">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="employerid" ColumnName="employerid" />
-                <ScalarProperty Name="jobseekerid" ColumnName="jobseekerid" />
-                <ScalarProperty Name="jobname" ColumnName="jobname" />
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="phone" ColumnName="phone" />
-                <ScalarProperty Name="email" ColumnName="email" />
-                <ScalarProperty Name="resume" ColumnName="resume" />
-                <ScalarProperty Name="status" ColumnName="status" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="get_jobs" FunctionName="MVCJOBPORTALModel.Store.get_jobs">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="MVCJOBPORTALModel.get_jobs_Result">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="qualification" ColumnName="qualification" />
-                <ScalarProperty Name="experience" ColumnName="experience" />
-                <ScalarProperty Name="salary" ColumnName="salary" />
-                <ScalarProperty Name="employerid" ColumnName="employerid" />
-                <ScalarProperty Name="employername" ColumnName="employername" />
-                <ScalarProperty Name="postdate" ColumnName="postdate" />
-                <ScalarProperty Name="validuntil" ColumnName="validuntil" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="get_maxlogin" FunctionName="MVCJOBPORTALModel.Store.get_maxlogin" />
-          <FunctionImportMapping FunctionImportName="get_user" FunctionName="MVCJOBPORTALModel.Store.get_user" />
-          <FunctionImportMapping FunctionImportName="insert_jobapplication" FunctionName="MVCJOBPORTALModel.Store.insert_jobapplication" />
-          <FunctionImportMapping FunctionImportName="insert_login" FunctionName="MVCJOBPORTALModel.Store.insert_login" />
-          <FunctionImportMapping FunctionImportName="login_check" FunctionName="MVCJOBPORTALModel.Store.login_check" />
-          <FunctionImportMapping FunctionImportName="register_employer" FunctionName="MVCJOBPORTALModel.Store.register_employer" />
-          <FunctionImportMapping FunctionImportName="register_jobseeker" FunctionName="MVCJOBPORTALModel.Store.register_jobseeker" />
-          <FunctionImportMapping FunctionImportName="USERID" FunctionName="MVCJOBPORTALModel.Store.USERID" />
-          <FunctionImportMapping FunctionImportName="get_empname" FunctionName="MVCJOBPORTALModel.Store.get_empname" />
           <EntitySetMapping Name="UserLogin1">
             <EntityTypeMapping TypeName="MVCJOBPORTALModel.UserLogin1">
               <MappingFragment StoreEntitySet="UserLogin1">
-                <ScalarProperty Name="password" ColumnName="password" />
-                <ScalarProperty Name="username" ColumnName="username" />
-                <ScalarProperty Name="user_type" ColumnName="user_type" />
-                <ScalarProperty Name="Reg_id" ColumnName="Reg_id" />
                 <ScalarProperty Name="Log_id" ColumnName="Log_id" />
+                <ScalarProperty Name="Reg_id" ColumnName="Reg_id" />
+                <ScalarProperty Name="user_type" ColumnName="user_type" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="password" ColumnName="password" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="updatestatus" FunctionName="MVCJOBPORTALModel.Store.updatestatus" />
-          <FunctionImportMapping FunctionImportName="get_jobseeker_application" FunctionName="MVCJOBPORTALModel.Store.get_jobseeker_application">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="MVCJOBPORTALModel.get_jobseeker_application_Result">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="employerid" ColumnName="employerid" />
-                <ScalarProperty Name="jobseekerid" ColumnName="jobseekerid" />
-                <ScalarProperty Name="jobname" ColumnName="jobname" />
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="phone" ColumnName="phone" />
-                <ScalarProperty Name="email" ColumnName="email" />
-                <ScalarProperty Name="resume" ColumnName="resume" />
-                <ScalarProperty Name="status" ColumnName="status" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="get_empid2" FunctionName="MVCJOBPORTALModel.Store.get_empid" />
-          <FunctionImportMapping FunctionImportName="get_jobseeker_name" FunctionName="MVCJOBPORTALModel.Store.get_jobseeker_name" />
-          <FunctionImportMapping FunctionImportName="get_jemail" FunctionName="MVCJOBPORTALModel.Store.get_jemail" />
-          <FunctionImportMapping FunctionImportName="get_jphone" FunctionName="MVCJOBPORTALModel.Store.get_jphone" />
+          <FunctionImportMapping FunctionImportName="add_job" FunctionName="MVCJOBPORTALModel.Store.add_job" />
           <FunctionImportMapping FunctionImportName="applicationid" FunctionName="MVCJOBPORTALModel.Store.applicationid">
             <ResultMapping>
               <ComplexTypeMapping TypeName="MVCJOBPORTALModel.applicationid_Result">
@@ -579,6 +521,66 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="confirm_job" FunctionName="MVCJOBPORTALModel.Store.confirm_job" />
+          <FunctionImportMapping FunctionImportName="get_application" FunctionName="MVCJOBPORTALModel.Store.get_application">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MVCJOBPORTALModel.get_application_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="employerid" ColumnName="employerid" />
+                <ScalarProperty Name="jobseekerid" ColumnName="jobseekerid" />
+                <ScalarProperty Name="jobname" ColumnName="jobname" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="resume" ColumnName="resume" />
+                <ScalarProperty Name="employername" ColumnName="employername" />
+                <ScalarProperty Name="status" ColumnName="status" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="get_empid" FunctionName="MVCJOBPORTALModel.Store.get_empid" />
+          <FunctionImportMapping FunctionImportName="get_empname" FunctionName="MVCJOBPORTALModel.Store.get_empname" />
+          <FunctionImportMapping FunctionImportName="get_jemail" FunctionName="MVCJOBPORTALModel.Store.get_jemail" />
+          <FunctionImportMapping FunctionImportName="get_jobs" FunctionName="MVCJOBPORTALModel.Store.get_jobs">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MVCJOBPORTALModel.get_jobs_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="qualification" ColumnName="qualification" />
+                <ScalarProperty Name="experience" ColumnName="experience" />
+                <ScalarProperty Name="salary" ColumnName="salary" />
+                <ScalarProperty Name="employerid" ColumnName="employerid" />
+                <ScalarProperty Name="employername" ColumnName="employername" />
+                <ScalarProperty Name="postdate" ColumnName="postdate" />
+                <ScalarProperty Name="validuntil" ColumnName="validuntil" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="get_jobseeker_application" FunctionName="MVCJOBPORTALModel.Store.get_jobseeker_application">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MVCJOBPORTALModel.get_jobseeker_application_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="employerid" ColumnName="employerid" />
+                <ScalarProperty Name="jobseekerid" ColumnName="jobseekerid" />
+                <ScalarProperty Name="jobname" ColumnName="jobname" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="resume" ColumnName="resume" />
+                <ScalarProperty Name="employername" ColumnName="employername" />
+                <ScalarProperty Name="status" ColumnName="status" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="get_jobseeker_name" FunctionName="MVCJOBPORTALModel.Store.get_jobseeker_name" />
+          <FunctionImportMapping FunctionImportName="get_jphone" FunctionName="MVCJOBPORTALModel.Store.get_jphone" />
+          <FunctionImportMapping FunctionImportName="get_maxlogin" FunctionName="MVCJOBPORTALModel.Store.get_maxlogin" />
+          <FunctionImportMapping FunctionImportName="get_user" FunctionName="MVCJOBPORTALModel.Store.get_user" />
+          <FunctionImportMapping FunctionImportName="insert_jobapplication" FunctionName="MVCJOBPORTALModel.Store.insert_jobapplication" />
+          <FunctionImportMapping FunctionImportName="insert_login" FunctionName="MVCJOBPORTALModel.Store.insert_login" />
+          <FunctionImportMapping FunctionImportName="login_check" FunctionName="MVCJOBPORTALModel.Store.login_check" />
+          <FunctionImportMapping FunctionImportName="register_employer" FunctionName="MVCJOBPORTALModel.Store.register_employer" />
+          <FunctionImportMapping FunctionImportName="register_jobseeker" FunctionName="MVCJOBPORTALModel.Store.register_jobseeker" />
           <FunctionImportMapping FunctionImportName="search_select" FunctionName="MVCJOBPORTALModel.Store.search_select">
             <ResultMapping>
               <ComplexTypeMapping TypeName="MVCJOBPORTALModel.search_select_Result">
@@ -594,6 +596,8 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="updatestatus" FunctionName="MVCJOBPORTALModel.Store.updatestatus" />
+          <FunctionImportMapping FunctionImportName="USERID" FunctionName="MVCJOBPORTALModel.Store.USERID" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

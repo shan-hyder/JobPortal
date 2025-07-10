@@ -10,7 +10,7 @@ namespace JobPortalMVC.Controllers
 {
     public class LoginController : Controller
     {
-        MVCJOBPORTALEntities1 entityobject = new MVCJOBPORTALEntities1();
+        MVCJOBPORTALEntities3 entityobject = new MVCJOBPORTALEntities3();
         // GET: Login
         public ActionResult Page_Load()
         { 
@@ -39,7 +39,7 @@ namespace JobPortalMVC.Controllers
                         string name = uname.Value.ToString();
                         Session["jobsname"] = name;
                         ObjectParameter empidParam = new ObjectParameter("id", typeof(int));
-                        entityobject.get_empid2(modelobject.username, modelobject.password, empidParam);
+                        entityobject.get_empid(modelobject.username, modelobject.password, empidParam);
 
                         Session["jphone"] = entityobject.get_jphone(modelobject.username, modelobject.password).FirstOrDefault();
                         Session["jemail"] = entityobject.get_jemail(modelobject.username, modelobject.password).FirstOrDefault();
@@ -61,12 +61,12 @@ namespace JobPortalMVC.Controllers
                             Session["empname"] = empname;
                         }
                         ObjectParameter empidParam = new ObjectParameter("id", typeof(int));
-                        entityobject.get_empid2(modelobject.username, modelobject.password, empidParam);
+                        entityobject.get_empid(modelobject.username, modelobject.password, empidParam);
 
                         int empid = empidParam.Value != null ? Convert.ToInt32(empidParam.Value) : 0;
                         if (empid !=0)
                         {
-                            Session["empid"] = empid;
+                            Session["employerid"] = empid;
                         }
                         return RedirectToAction("Employer_Load", "EmployerHome");
                     }

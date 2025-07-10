@@ -9,7 +9,7 @@ namespace JobPortalMVC.Controllers
 {
     public class JobSeekrHomeController : Controller
     {
-        MVCJOBPORTALEntities1 entityobject = new MVCJOBPORTALEntities1();
+        MVCJOBPORTALEntities3 entityobject = new MVCJOBPORTALEntities3();
         // GET: JobSeekrHome
         
         public ActionResult JobseekerHome_Load(JobseekerHome modelobject)
@@ -47,24 +47,39 @@ namespace JobPortalMVC.Controllers
                 model.message = TempData["message"].ToString();
             return View(model);
         }
-        public ActionResult Job_Apply(int JobID,string Employername,int Employerid,string Jobname,HttpPostedFileBase Resume)
+       public ActionResult Job_Apply(int JobID, string Employername, int Employerid, string Jobname, HttpPostedFileBase Resume)
         {
             int id = Convert.ToInt32(Session["jobsid"]);
-            string name=Session["jobsname"].ToString();
-            string phone =Session["jphone"].ToString();
+            string name = Session["jobsname"].ToString();
+            string phone = Session["jphone"].ToString();
             string email = Session["jemail"].ToString();
-            byte[] resumeBytes = null;
+
+            string resumePath = null;
+
             if (Resume != null && Resume.ContentLength > 0)
             {
-                using (var binaryReader = new System.IO.BinaryReader(Resume.InputStream))
-                {
-                    resumeBytes = binaryReader.ReadBytes(Resume.ContentLength);
-                }
-            }
-            entityobject.insert_jobapplication(Employerid, id, Jobname, name, phone, resumeBytes, email, Employername, "pending");
-            JobseekerHome modelobject = new JobseekerHome();
-            TempData["message"] = "Successfully applied!";
+                // Unique file name
+                string fileName = Guid.NewGuid().ToString() + "_" + System.IO.Path.GetFileName(Resume.FileName);
 
+                // Full physical path
+                string fullPath = Server.MapPath("~/resume/" + fileName);
+
+                // Save file
+                Resume.SaveAs(fullPath);
+
+                // Relative path to store in DB
+                resumePath = "/resume/" + fileName;
+            }
+
+
+                // Store relative path in DB (not file content!)
+                entityobject.insert_jobapplication(
+                    Employerid, id, Jobname,
+                    name, phone,
+                    resumePath, // now a string
+                    email, Employername, "pending");
+                TempData["message"] = "Successfully applied!";
+            
             return RedirectToAction("JobseekerHome_Load");
         }
         public ActionResult SearchJob(string SearchTerm, JobseekerHome modelobject)

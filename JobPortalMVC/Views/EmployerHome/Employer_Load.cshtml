@@ -4,7 +4,10 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1 class="text-center text-danger">Welcome @ViewBag.empname</h1>
+<div>
+    <h1 class="text-center text-danger">Welcome @ViewBag.empname</h1>
+</div>
+
 <div class="d-flex justify-content-center align-items-center">
     @if (ViewBag.Statusmesg != null)
     {
@@ -56,7 +59,7 @@
                         @item.email
                     </td>
                     <td>
-                        <a href="@item.resume" target="_blank">View</a>
+                        <a href="@Url.Content(item.resume)" target="_blank">View</a>
                     </td>
                     <td>
                         @item.status

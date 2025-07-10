@@ -1,5 +1,10 @@
-﻿<div class="d-flex flex-col justify-content-center table-bordered border shadow">
-    @Html.ActionLink("Register Jobseeker", "Register_Jobseeker_Load", "Register_JobSeeker")<br />
-    @Html.ActionLink("Register Employer", "Register_Load", "Register_Employer")<br />
-    @Html.ActionLink("Login","Page_Load","Login")
+﻿<div class="d-flex justify-content-center mt-5">
+    <div class="border shadow p-4 bg-white rounded" style="min-width: 500px;">
+        <h5 class="mb-4 text-center">Welcome</h5>
+        <div class="d-flex flex-column gap-2">
+            @Html.ActionLink("Register Jobseeker", "Register_Jobseeker_Load", "Register_JobSeeker", null, new { @class = "btn btn-primary mb-2" })
+            @Html.ActionLink("Register Employer", "Register_Load", "Register_Employer", null, new { @class = "btn btn-secondary mb-2" })
+            @Html.ActionLink("Login", "Page_Load", "Login", null, new { @class = "btn btn-success" })
+        </div>
+    </div>
 </div>
