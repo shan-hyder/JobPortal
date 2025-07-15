@@ -22,7 +22,7 @@ namespace JobPortalMVC.Controllers
            if(ModelState.IsValid)
             {
                 string qual = string.Join(",", modelobject.qualification);
-                int empid=Convert.ToInt32(Session["empid"]);
+                int empid=Convert.ToInt32(Session["employerid"]);
                 string empname = Session["empname"].ToString();
                 DateTime exp = DateTime.Now.AddDays(30);
                 entityobject.add_job(modelobject.name,qual, modelobject.experience, (modelobject.salary).ToString(),empid, empname, DateTime.Now, exp);

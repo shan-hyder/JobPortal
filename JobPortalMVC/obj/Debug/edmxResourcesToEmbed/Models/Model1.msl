@@ -168,5 +168,21 @@
     </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="updatestatus" FunctionName="MVCJOBPORTALModel.Store.updatestatus" />
     <FunctionImportMapping FunctionImportName="USERID" FunctionName="MVCJOBPORTALModel.Store.USERID" />
+    <FunctionImportMapping FunctionImportName="getJobsById" FunctionName="MVCJOBPORTALModel.Store.getJobsById">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="MVCJOBPORTALModel.getJobsById_Result">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="qualification" ColumnName="qualification" />
+          <ScalarProperty Name="experience" ColumnName="experience" />
+          <ScalarProperty Name="salary" ColumnName="salary" />
+          <ScalarProperty Name="employerid" ColumnName="employerid" />
+          <ScalarProperty Name="employername" ColumnName="employername" />
+          <ScalarProperty Name="postdate" ColumnName="postdate" />
+          <ScalarProperty Name="validuntil" ColumnName="validuntil" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="deletejob" FunctionName="MVCJOBPORTALModel.Store.deletejob" />
   </EntityContainerMapping>
 </Mapping>

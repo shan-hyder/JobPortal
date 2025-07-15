@@ -148,10 +148,10 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            @Html.Hidden("JobId", i.id)
-                            @Html.Hidden("Employerid", i.employerid)
-                            @Html.Hidden("Jobname", i.name)
-                            @Html.Hidden("Employername", i.employername)
+                            <input type="hidden" name="Employerid" value="@i.employerid" />
+                            <input type="hidden" name="JobID" value="@i.id" />
+                            <input type="hidden" name="Jobname" value="@i.name" />
+                            <input type="hidden" name="Employername" value="@i.employername" />
 
                             <div class="form-group">
                                 <label for="Resume">Upload Resume</label>

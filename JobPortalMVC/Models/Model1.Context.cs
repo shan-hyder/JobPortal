@@ -362,5 +362,23 @@ namespace JobPortalMVC.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("USERID", unameParameter, paswParameter, type);
         }
+    
+        public virtual ObjectResult<getJobsById_Result> getJobsById(Nullable<int> employerid)
+        {
+            var employeridParameter = employerid.HasValue ?
+                new ObjectParameter("employerid", employerid) :
+                new ObjectParameter("employerid", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getJobsById_Result>("getJobsById", employeridParameter);
+        }
+    
+        public virtual int deletejob(Nullable<int> jobid)
+        {
+            var jobidParameter = jobid.HasValue ?
+                new ObjectParameter("jobid", jobid) :
+                new ObjectParameter("jobid", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("deletejob", jobidParameter);
+        }
     }
 }

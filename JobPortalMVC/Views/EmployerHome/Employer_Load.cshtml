@@ -3,99 +3,114 @@
     ViewBag.Title = "Employer_Load";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<div class="container">
 
-<div>
     <h1 class="text-center text-danger">Welcome @ViewBag.empname</h1>
-</div>
 
-<div class="d-flex justify-content-center align-items-center">
     @if (ViewBag.Statusmesg != null)
     {
-        <div class="alert alert-success text-center">
-            @ViewBag.Statusmesg
+<div class="alert alert-success text-center">
+    @ViewBag.Statusmesg
+</div>}
+
+    @if (ViewBag.deletemsg != null)
+    {
+<div class="alert alert-success text-center">
+    @ViewBag.deletemsg
+</div>}
+
+    <!-- Applications Table -->
+    <div class="row">
+        <div class="col-12">
+            <h2 class="text-center text-primary">Applications Received</h2>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Job Name</th>
+                        <th>Applicant Name</th>
+                        <th>Phone</th>
+                        <th>Email</th>
+                        <th>Resume</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.Applicantretreive)
+                    {
+        <tr>
+            <td>@item.jobname</td>
+            <td>@item.name</td>
+            <td>@item.phone</td>
+            <td>@item.email</td>
+            <td><a href="@Url.Content(item.resume)" target="_blank">View</a></td>
+            <td>@item.status</td>
+            <td>
+                <form action="/EmployerHome/UpdateStatus" method="post">
+                    <input type="hidden" name="jobseekerid" value="@item.jobseekerid" />
+                    <input type="hidden" name="employerid" value="@item.employerid" />
+                    <input type="submit" value="Accept" name="Status" class="btn btn-success btn-sm" />
+                    <input type="submit" value="Reject" name="Status" class="btn btn-danger btn-sm" />
+                </form>
+            </td>
+        </tr>}
+                </tbody>
+            </table>
         </div>
+    </div>
 
-    }
+    <!-- Posted Jobs Table -->
+    <div class="row mt-5">
+        <div class="col-12">
+            <h2 class="text-center text-success">Posted Jobs So Far</h2>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Qualification</th>
+                        <th>Valid Until</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.allPostedjob)
+                    {
+        <tr>
+            <td>@item.name</td>
+            <td>@item.qualification</td>
+            <td>@item.validuntil</td>
+            <td>
+                @using (Html.BeginForm("DeleteJob", "EmployerHome", FormMethod.Post))
+                {
+                    @Html.Hidden("jobid", item.id)
+                    <button class="btn btn-link" type="submit" title="Delete" onclick="return confirm('Are you sure you want to delete this job post?');">
+                        <i class="fa-solid fa-trash" style="color: #6c0222;"></i>
+                    </button>}
+            </td>
+        </tr>}
+                </tbody>
+            </table>
+        </div>
+    </div>
 
+    <!-- Post Job Button -->
+    <div class="text-center mt-4">
+        @using (Html.BeginForm("PostJob_Load", "PostJob", FormMethod.Get))
+        {
+<button type="submit" class="btn btn-primary">Post New Job</button>}
+    </div>
 
-
-    <table class="table table-bordered">
-        <thead>
-            <tr>
-                <th>
-                    Job Name
-                </th>
-                <th>
-                    Applicant Name
-                </th>
-                <th>
-                    Phone
-                </th>
-                <th>
-                    Email
-                </th>
-                <th>
-                    Resume
-                </th>
-                <th>
-                    Status
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model.Applicantretreive)
-            {
-                <tr>
-                    <td>
-                        @item.jobname
-                    </td>
-                    <td>
-                        @item.name
-                    </td>
-                    <td>
-                        @item.phone
-                    </td>
-                    <td>
-                        @item.email
-                    </td>
-                    <td>
-                        <a href="@Url.Content(item.resume)" target="_blank">View</a>
-                    </td>
-                    <td>
-                        @item.status
-                    </td>
-
-
-                    <td>
-                        <form action="/EmployerHome/UpdateStatus" method="post">
-                            <input type="hidden" name="jobseekerid" value="@item.jobseekerid" />
-                            <input type="hidden" name="employerid" value="@item.employerid" />
-                            <input type="submit" value="Accept" name="Status" class="btn btn-success" />
-                            <input type="submit" value="Reject" name="Status" class="btn btn-danger" />
-
-                        </form>
-                    </td>
-
-
-                </tr>
-            }
-        </tbody>
-
-
-    </table>
-    @Html.DisplayFor(m => m.mesg)
-</div>
-<div class="jumbotron">
-    @using (Html.BeginForm("PostJob_Load", "PostJob",FormMethod.Get))
-            {
-                <button type="submit" class="btn btn-primary">Post Job</button>
-            }
+    <!-- Message -->
+    <div class="text-center mt-3">
+        @Html.DisplayFor(m => m.mesg)
+    </div>
 
 </div>
+
 
 
 @*<div>
-    @using (Html.BeginForm())
+        @using (Html.BeginForm())
 
-</div>*@
+    </div>*@
 

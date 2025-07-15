@@ -16,6 +16,7 @@ namespace JobPortalMVC.Controllers
 
             ViewBag.empname = Session["empname"].ToString();
             ViewBag.Statusmesg = TempData["statusmesg"];
+            ViewBag.deletemsg = TempData["delete"];
             EmployerHomeModel modelobject = new EmployerHomeModel();
             int id =Convert.ToInt32(Session["employerid"]);
             var result=entityobject.get_application(id);
@@ -31,23 +32,19 @@ namespace JobPortalMVC.Controllers
                 resume = r.resume
             }).ToList();
             modelobject.Applicantretreive = applications;
-            return View(modelobject);
-        }
 
-        public ActionResult Employer_PostJob_click(EmployerHomeModel modelobject)
-        {
-            if (ModelState.IsValid)
+            var jobbyemployer = entityobject.getJobsById(id);
+
+            List<postedJobs> postedjobs = jobbyemployer.Select(a => new postedJobs
             {
-                modelobject.employerid = Convert.ToInt32(Session["employerid"]);
-                modelobject.employername = Session["employername"].ToString();
-                modelobject.postdate = DateTime.Now;
-                modelobject.validuntil = modelobject.postdate.AddDays(30);
-                entityobject.add_job(modelobject.name, modelobject.qualification,modelobject.experience, modelobject.salary, modelobject.employerid, modelobject.employername, modelobject.postdate, modelobject.validuntil);
-                modelobject.mesg = "job posted successfully";
-                return View(modelobject);
+                id=a.id,
+                name = a.name,
+                qualification = a.qualification,
+                validuntil = a.validuntil
 
-            }
-            modelobject.mesg = "Invalid entry";
+            }).ToList();
+            modelobject.allPostedjob = postedjobs;
+
             return View(modelobject);
         }
         [HttpPost]
@@ -58,7 +55,13 @@ namespace JobPortalMVC.Controllers
 
             TempData["statusmesg"] = "Status updated successfully";
 
+            return RedirectToAction("Employer_Load");
 
+        }
+        public ActionResult Deletejob(int jobid)
+        {
+            entityobject.deletejob(jobid);
+            TempData["delete"] = "Job deleted successfully";
             return RedirectToAction("Employer_Load");
 
         }

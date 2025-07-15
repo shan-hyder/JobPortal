@@ -85,6 +85,9 @@
     <Parameter Name="status" Type="varchar" Mode="In" />
     <Parameter Name="jobname" Type="varchar" Mode="In" />
   </Function>
+  <Function Name="deletejob" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="jobid" Type="int" Mode="In" />
+  </Function>
   <Function Name="get_application" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="empid" Type="int" Mode="In" />
   </Function>
@@ -122,6 +125,9 @@
     <Parameter Name="uname" Type="varchar" Mode="In" />
     <Parameter Name="pasw" Type="varchar" Mode="In" />
     <Parameter Name="type" Type="varchar" Mode="InOut" />
+  </Function>
+  <Function Name="getJobsById" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="employerid" Type="int" Mode="In" />
   </Function>
   <Function Name="insert_jobapplication" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="employerid" Type="int" Mode="In" />

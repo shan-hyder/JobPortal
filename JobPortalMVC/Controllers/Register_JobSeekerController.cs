@@ -5,6 +5,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using JobPortalMVC.Models;
+using System.Net;
+using System.Net.Mail;
 
 namespace JobPortalMVC.Controllers
 {
@@ -58,11 +60,45 @@ namespace JobPortalMVC.Controllers
                 entityobject.register_jobseeker(id, modelobject.name, modelobject.age, modelobject.qualification, modelobject.phone, modelobject.email);
                 entityobject.insert_login(id, "JOBSEEKER", modelobject.username, modelobject.password);
                 modelobject.message = "Jobseeker Successfully Registered";
+                try
+                {
+                    SendConfirmationEmail(modelobject.email, "register Alert", "successfully registered");
+                }
+                catch
+                {
+                    ViewBag.EmailStatus = "Registration Successfull but email not send";
+                }
+                ViewBag.EmailStatus = "Registration successfull Confirmation email send";
+                
                 return View("Register_Jobseeker_Load", modelobject);
             }
             modelobject.message = "Jobseeker Registration Failed";
             modelobject.Chosenquals = GetQualifications();
             return View("Register_Jobseeker_Load", modelobject);
+        }
+        public static void SendConfirmationEmail(string toEmail,string subject,string body)
+        {
+            var fromEmail = new MailAddress("shibilshanhyder@gmail.com", "jobportal");
+            var to = new MailAddress(toEmail);
+            var password = "yvac vpts dhmn cdma";
+            var smtp = new SmtpClient()
+            {
+                Host = "smtp.gmail.com",
+                Port = 587,
+                EnableSsl = true,
+                DeliveryMethod = SmtpDeliveryMethod.Network,
+                UseDefaultCredentials = false,
+                Credentials = new NetworkCredential(fromEmail.Address, password)
+            };
+            using (var message=new MailMessage(fromEmail,to)
+            {
+                Subject = subject,
+                    Body=body,
+                    IsBodyHtml=true
+            })
+            {
+                smtp.Send(message);
+            }
         }
     }
 }

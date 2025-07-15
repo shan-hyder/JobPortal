@@ -19,8 +19,17 @@ namespace JobPortalMVC.Models
 
 
     }
+    public class postedJobs
+    {
+        public int id { get; set; }
+        public string name { get; set; }
+        public string qualification { get; set; }
+        public int employerid { get; set; }
+        public DateTime validuntil { get; set; }
+    }
     public class EmployerHomeModel
     {
+        public List<postedJobs> allPostedjob { get; set; } = new List<postedJobs>();
         public List<Applications> Applicantretreive { get; set; } = new List<Applications>();
         public int id { get; set; }
         [Required(ErrorMessage ="Invalid entry")]

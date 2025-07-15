@@ -15,7 +15,7 @@ namespace JobPortalMVC.Models
         public string salary { get; set; }
         public int employerid { get; set; }
         public string employername { get; set; }
-       
+   
         public DateTime postdate { get; set; }
         public DateTime validuntil { get; set; }
        

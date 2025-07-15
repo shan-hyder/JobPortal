@@ -47,7 +47,7 @@ namespace JobPortalMVC.Controllers
                 model.message = TempData["message"].ToString();
             return View(model);
         }
-       public ActionResult Job_Apply(int JobID, string Employername, int Employerid, string Jobname, HttpPostedFileBase Resume)
+       public ActionResult Job_Apply( string Employername, int Employerid, string Jobname, HttpPostedFileBase Resume)
         {
             int id = Convert.ToInt32(Session["jobsid"]);
             string name = Session["jobsname"].ToString();

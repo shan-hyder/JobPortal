@@ -150,6 +150,9 @@
     </Compile>
     <Compile Include="Models\EmployerHomeModel.cs" />
     <Compile Include="Models\EmployerRegister.cs" />
+    <Compile Include="Models\getJobsById_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\get_application_Result.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>

@@ -178,6 +178,12 @@
       <Parameter Name="pasw" Mode="In" Type="String" />
       <Parameter Name="type" Mode="InOut" Type="String" />
     </FunctionImport>
+    <FunctionImport Name="getJobsById" ReturnType="Collection(MVCJOBPORTALModel.getJobsById_Result)">
+      <Parameter Name="employerid" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="deletejob">
+      <Parameter Name="jobid" Mode="In" Type="Int32" />
+    </FunctionImport>
   </EntityContainer>
   <ComplexType Name="applicationid_Result">
     <Property Type="Int32" Name="id" Nullable="false" />
@@ -227,6 +233,17 @@
     <Property Type="String" Name="status" Nullable="false" MaxLength="50" />
   </ComplexType>
   <ComplexType Name="search_select_Result">
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="String" Name="name" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="qualification" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="experience" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="salary" Nullable="false" MaxLength="50" />
+    <Property Type="Int32" Name="employerid" Nullable="false" />
+    <Property Type="String" Name="employername" Nullable="false" MaxLength="50" />
+    <Property Type="DateTime" Name="postdate" Nullable="false" />
+    <Property Type="DateTime" Name="validuntil" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="getJobsById_Result">
     <Property Type="Int32" Name="id" Nullable="false" />
     <Property Type="String" Name="name" Nullable="false" MaxLength="50" />
     <Property Type="String" Name="qualification" Nullable="false" MaxLength="50" />

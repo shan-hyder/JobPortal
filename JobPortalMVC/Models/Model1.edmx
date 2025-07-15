@@ -90,6 +90,9 @@
           <Parameter Name="status" Type="varchar" Mode="In" />
           <Parameter Name="jobname" Type="varchar" Mode="In" />
         </Function>
+        <Function Name="deletejob" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="jobid" Type="int" Mode="In" />
+        </Function>
         <Function Name="get_application" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="empid" Type="int" Mode="In" />
         </Function>
@@ -127,6 +130,9 @@
           <Parameter Name="uname" Type="varchar" Mode="In" />
           <Parameter Name="pasw" Type="varchar" Mode="In" />
           <Parameter Name="type" Type="varchar" Mode="InOut" />
+        </Function>
+        <Function Name="getJobsById" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="employerid" Type="int" Mode="In" />
         </Function>
         <Function Name="insert_jobapplication" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="employerid" Type="int" Mode="In" />
@@ -366,6 +372,12 @@
             <Parameter Name="pasw" Mode="In" Type="String" />
             <Parameter Name="type" Mode="InOut" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="getJobsById" ReturnType="Collection(MVCJOBPORTALModel.getJobsById_Result)">
+          <Parameter Name="employerid" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="deletejob">
+            <Parameter Name="jobid" Mode="In" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="applicationid_Result">
           <Property Type="Int32" Name="id" Nullable="false" />
@@ -415,6 +427,17 @@
           <Property Type="String" Name="status" Nullable="false" MaxLength="50" />
         </ComplexType>
         <ComplexType Name="search_select_Result">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="name" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="qualification" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="experience" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="salary" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="employerid" Nullable="false" />
+          <Property Type="String" Name="employername" Nullable="false" MaxLength="50" />
+          <Property Type="DateTime" Name="postdate" Nullable="false" />
+          <Property Type="DateTime" Name="validuntil" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="getJobsById_Result">
           <Property Type="Int32" Name="id" Nullable="false" />
           <Property Type="String" Name="name" Nullable="false" MaxLength="50" />
           <Property Type="String" Name="qualification" Nullable="false" MaxLength="50" />
@@ -598,6 +621,22 @@
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="updatestatus" FunctionName="MVCJOBPORTALModel.Store.updatestatus" />
           <FunctionImportMapping FunctionImportName="USERID" FunctionName="MVCJOBPORTALModel.Store.USERID" />
+          <FunctionImportMapping FunctionImportName="getJobsById" FunctionName="MVCJOBPORTALModel.Store.getJobsById">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MVCJOBPORTALModel.getJobsById_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="qualification" ColumnName="qualification" />
+                <ScalarProperty Name="experience" ColumnName="experience" />
+                <ScalarProperty Name="salary" ColumnName="salary" />
+                <ScalarProperty Name="employerid" ColumnName="employerid" />
+                <ScalarProperty Name="employername" ColumnName="employername" />
+                <ScalarProperty Name="postdate" ColumnName="postdate" />
+                <ScalarProperty Name="validuntil" ColumnName="validuntil" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="deletejob" FunctionName="MVCJOBPORTALModel.Store.deletejob" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
