@@ -1,6 +1,7 @@
 ﻿@model JobPortalMVC.Models.JobseekerHome
 @{
     ViewBag.Title = "JobseekerHome_Load";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <div>
@@ -9,6 +10,13 @@
 <div>
     <h1 class="text-center text-warning" style="border-bottom-color:black">Application Status</h1>
 </div>
+@if(Model.message!=null)
+            {
+<script type="text/javascript">
+        alert('@Model.message')
+</script>
+               
+            }
 
 
 @using (Html.BeginForm("JobseekerHome_Load", "JobSeekrHome", FormMethod.Get))
@@ -75,8 +83,8 @@
 <h2 class="text-center text-danger">Job Postes By Companies</h2>
 <div class="jumbotron d-flex justify-content-center">
     <div>
-        @Html.DisplayFor(m => m.message);
-        <table class="table-bordered">
+        @Html.DisplayFor(m => m.message)
+        <table class="table-bordered"style="font-size:large;">
             <thead>
                 <tr>
                     <td>

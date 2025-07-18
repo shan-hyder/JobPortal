@@ -49,6 +49,8 @@
                 <form action="/EmployerHome/UpdateStatus" method="post">
                     <input type="hidden" name="jobseekerid" value="@item.jobseekerid" />
                     <input type="hidden" name="employerid" value="@item.employerid" />
+                    <input type="hidden" name="jobname"value="@item.jobname"/>
+                    <input type="hidden" name="email" value="@item.email"/>
                     <input type="submit" value="Accept" name="Status" class="btn btn-success btn-sm" />
                     <input type="submit" value="Reject" name="Status" class="btn btn-danger btn-sm" />
                 </form>

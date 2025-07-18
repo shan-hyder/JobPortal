@@ -184,6 +184,15 @@
     <FunctionImport Name="deletejob">
       <Parameter Name="jobid" Mode="In" Type="Int32" />
     </FunctionImport>
+    <EntitySet Name="AppliedJobsStatus" EntityType="MVCJOBPORTALModel.AppliedJobsStatu" />
+    <FunctionImport Name="applystaus">
+      <Parameter Name="uid" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="alreadyapply" ReturnType="Collection(Int32)">
+      <Parameter Name="uid" Mode="In" Type="Int32" />
+      <Parameter Name="jobname" Mode="In" Type="String" />
+      <Parameter Name="employerid" Mode="In" Type="Int32" />
+    </FunctionImport>
   </EntityContainer>
   <ComplexType Name="applicationid_Result">
     <Property Type="Int32" Name="id" Nullable="false" />
@@ -254,4 +263,14 @@
     <Property Type="DateTime" Name="postdate" Nullable="false" />
     <Property Type="DateTime" Name="validuntil" Nullable="false" />
   </ComplexType>
+  <EntityType Name="AppliedJobsStatu">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Employername" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Jobname" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Status" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Jobseeker_id" Type="Int32" Nullable="false" />
+  </EntityType>
 </Schema>

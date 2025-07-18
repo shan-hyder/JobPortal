@@ -1,7 +1,9 @@
 ﻿@model JobPortalMVC.Models.JobSeekerRegister
 @{
     ViewBag.Title = "Register_Jobseeker_Load";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
 
 
 <div class="jumbotron">
@@ -69,12 +71,12 @@
             </div>
         }
     </div>
-    @if(ViewBag.EmailStatus!=null)
-            {
-              <div class="alert alert-info text-center">
-                  @ViewBag.EmailStatus
-              </div>
-            }
+    @if (ViewBag.EmailStatus != null)
+    {
+        <div class="alert alert-info text-center">
+            @ViewBag.EmailStatus
+        </div>
+    }
 </div>
 
 

@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using JobPortalMVC.Models;
+using System.Net;
+using System.Net.Mail;
 
 namespace JobPortalMVC.Controllers
 {
@@ -48,12 +50,25 @@ namespace JobPortalMVC.Controllers
             return View(modelobject);
         }
         [HttpPost]
-        public ActionResult  UpdateStatus(int jobseekerid,int employerid,string status)
+        public ActionResult UpdateStatus(int jobseekerid, int employerid, string status, string jobname, string email,string Status)
         {
+
             entityobject.updatestatus(employerid, jobseekerid, status);
             EmployerHomeModel modelobject = new EmployerHomeModel();
 
             TempData["statusmesg"] = "Status updated successfully";
+            string toemail = "shibilshanhyder@gmail.com";
+            string body = "";
+            if (Status == "Accept")
+            {
+                body = "Congratulations Your Application for the job role " + jobname + " have been Accepted contact our HR department for further information";
+            }
+            else
+            {
+                body = "Sorry Your Application for the job role " + jobname + " have been Rejected";
+            }
+            string subject = "";
+            SendStatusUpdationMail(toemail, subject, body);
 
             return RedirectToAction("Employer_Load");
 
@@ -64,6 +79,31 @@ namespace JobPortalMVC.Controllers
             TempData["delete"] = "Job deleted successfully";
             return RedirectToAction("Employer_Load");
 
+        }
+        public ActionResult SendStatusUpdationMail(string ToEmail,string subject,string body)
+        {
+            var fromEmail = new MailAddress("shibilshanhyder@gmail.com", "JobPortal");
+            var to = new MailAddress(ToEmail);
+            var password = "yvac vpts dhmn cdma";
+            var smtp = new SmtpClient()
+            {
+                Host = "smtp.gmail.com",
+                Port = 587,
+                EnableSsl = true,
+                DeliveryMethod = SmtpDeliveryMethod.Network,
+                UseDefaultCredentials = false,
+                Credentials = new NetworkCredential(fromEmail.Address, password)
+            };
+            using (var message = new MailMessage(fromEmail, to)
+            {
+                Subject = subject,
+                Body = body,
+                IsBodyHtml = true
+            })
+            {
+                smtp.Send(message);
+            }
+            return RedirectToAction("Employer_Load");
         }
     }
 }

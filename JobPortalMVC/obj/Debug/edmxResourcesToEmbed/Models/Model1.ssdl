@@ -1,13 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="MVCJOBPORTALModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-  <EntityType Name="Applystatus">
+  <EntityType Name="AppliedJobsStatus">
     <Key>
-      <PropertyRef Name="id" />
+      <PropertyRef Name="Id" />
     </Key>
-    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="jobseekerid" Type="int" Nullable="false" />
-    <Property Name="jobname" Type="varchar" MaxLength="50" Nullable="false" />
-    <Property Name="status" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Employername" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Jobname" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Status" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Jobseeker_id" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Employer">
     <Key>
@@ -77,8 +78,16 @@
     <Parameter Name="postdate" Type="date" Mode="In" />
     <Parameter Name="validuntil" Type="date" Mode="In" />
   </Function>
+  <Function Name="alreadyapply" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="uid" Type="int" Mode="In" />
+    <Parameter Name="jobname" Type="varchar" Mode="In" />
+    <Parameter Name="employerid" Type="int" Mode="In" />
+  </Function>
   <Function Name="applicationid" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="jsid" Type="int" Mode="In" />
+  </Function>
+  <Function Name="applystaus" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="uid" Type="int" Mode="In" />
   </Function>
   <Function Name="confirm_job" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="jobseekerid" Type="int" Mode="In" />
@@ -178,7 +187,7 @@
     <Parameter Name="type" Type="varchar" Mode="InOut" />
   </Function>
   <EntityContainer Name="MVCJOBPORTALModelStoreContainer">
-    <EntitySet Name="Applystatus" EntityType="Self.Applystatus" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AppliedJobsStatus" EntityType="Self.AppliedJobsStatus" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Employer" EntityType="Self.Employer" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="jobapplication" EntityType="Self.jobapplication" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Jobs" EntityType="Self.Jobs" Schema="dbo" store:Type="Tables" />

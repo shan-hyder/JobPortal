@@ -1,6 +1,12 @@
 ﻿body {
     padding-top: 50px;
     padding-bottom: 20px;
+    background-image: url('/image/moein-ghezelbash-J0uTfdQ_Qnc-unsplash.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+}
+table {
+    background-color: #f5f5f5;
 }
 
 /* Set padding to keep content from hitting the edges */

@@ -70,15 +70,28 @@ namespace JobPortalMVC.Controllers
                 // Relative path to store in DB
                 resumePath = "/resume/" + fileName;
             }
+            int count=entityobject.alreadyapply(id, Jobname, Employerid).FirstOrDefault() ?? 0;
+            
+
+
+            if(count==0)
+            {
+                entityobject.insert_jobapplication(
+                 Employerid, id, Jobname,
+                 name, phone,
+                 resumePath, // now a string
+                 email, Employername, "pending");
+                TempData["message"] = "Successfully applied!";
+            }
+            else
+            {
+                TempData["message"] = "You Have Already Applied for this job";
+            }
 
 
                 // Store relative path in DB (not file content!)
-                entityobject.insert_jobapplication(
-                    Employerid, id, Jobname,
-                    name, phone,
-                    resumePath, // now a string
-                    email, Employername, "pending");
-                TempData["message"] = "Successfully applied!";
+
+             
             
             return RedirectToAction("JobseekerHome_Load");
         }

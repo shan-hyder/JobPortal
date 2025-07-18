@@ -33,6 +33,7 @@ namespace JobPortalMVC.Models
         public virtual DbSet<Job> Jobs { get; set; }
         public virtual DbSet<Jobseeker> Jobseekers { get; set; }
         public virtual DbSet<UserLogin1> UserLogin1 { get; set; }
+        public virtual DbSet<AppliedJobsStatu> AppliedJobsStatus { get; set; }
     
         public virtual int add_job(string name, string qual, string experience, string salary, Nullable<int> employerid, string employername, Nullable<System.DateTime> postdate, Nullable<System.DateTime> validuntil)
         {
@@ -379,6 +380,32 @@ namespace JobPortalMVC.Models
                 new ObjectParameter("jobid", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("deletejob", jobidParameter);
+        }
+    
+        public virtual int applystaus(Nullable<int> uid)
+        {
+            var uidParameter = uid.HasValue ?
+                new ObjectParameter("uid", uid) :
+                new ObjectParameter("uid", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("applystaus", uidParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<int>> alreadyapply(Nullable<int> uid, string jobname, Nullable<int> employerid)
+        {
+            var uidParameter = uid.HasValue ?
+                new ObjectParameter("uid", uid) :
+                new ObjectParameter("uid", typeof(int));
+    
+            var jobnameParameter = jobname != null ?
+                new ObjectParameter("jobname", jobname) :
+                new ObjectParameter("jobname", typeof(string));
+    
+            var employeridParameter = employerid.HasValue ?
+                new ObjectParameter("employerid", employerid) :
+                new ObjectParameter("employerid", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("alreadyapply", uidParameter, jobnameParameter, employeridParameter);
         }
     }
 }

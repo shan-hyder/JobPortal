@@ -1,16 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="MVCJOBPORTALModelStoreContainer" CdmEntityContainer="MVCJOBPORTALEntities3">
-    <EntitySetMapping Name="Applystatus">
-      <EntityTypeMapping TypeName="MVCJOBPORTALModel.Applystatu">
-        <MappingFragment StoreEntitySet="Applystatus">
-          <ScalarProperty Name="id" ColumnName="id" />
-          <ScalarProperty Name="jobseekerid" ColumnName="jobseekerid" />
-          <ScalarProperty Name="jobname" ColumnName="jobname" />
-          <ScalarProperty Name="status" ColumnName="status" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="Employers">
       <EntityTypeMapping TypeName="MVCJOBPORTALModel.Employer">
         <MappingFragment StoreEntitySet="Employer">
@@ -184,5 +174,18 @@
       </ResultMapping>
     </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="deletejob" FunctionName="MVCJOBPORTALModel.Store.deletejob" />
+    <EntitySetMapping Name="AppliedJobsStatus">
+      <EntityTypeMapping TypeName="MVCJOBPORTALModel.AppliedJobsStatu">
+        <MappingFragment StoreEntitySet="AppliedJobsStatus">
+          <ScalarProperty Name="Jobseeker_id" ColumnName="Jobseeker_id" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Jobname" ColumnName="Jobname" />
+          <ScalarProperty Name="Employername" ColumnName="Employername" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="applystaus" FunctionName="MVCJOBPORTALModel.Store.applystaus" />
+    <FunctionImportMapping FunctionImportName="alreadyapply" FunctionName="MVCJOBPORTALModel.Store.alreadyapply" />
   </EntityContainerMapping>
 </Mapping>
